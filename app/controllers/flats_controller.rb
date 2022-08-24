@@ -4,6 +4,10 @@ class FlatsController < ApplicationController
 
   def index
     @flats = policy_scope(Flat)
+    @search = params[:name]
+    if @search.present?
+      @flats = Flat.where(name: @name)
+    end
   end
 
   def show

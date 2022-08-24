@@ -1,7 +1,21 @@
 <div class="container">
-  <h1>All Flats</h1>
-  <% @flats.each do |flat| %>
-    <p><%= link_to flat.name, flat_path(flat) %></p>
-  <% end %>
+  <h1 class="my-2">All Flats</h1>
+  <div class="row row-cols-sm-12 row-cols-md-3 row-cols-xl-5 justify-content-center p-0">
+    <% @flats.each do |flat| %>
+      <div class ="card p-0 m-2">
+        <div>
+          <%= link_to cl_image_tag( flat.photo_url ? "fakeairbnb/#{flat.photo_url}" : "fakeairbnb/cld-sample-2.jpg", class:"img-fluid round-img p-0 m-0"), flat_path(flat) %>
+        </div>
+        <div class="card-body">
+          <p class="card-title">><strong><%= link_to flat.name.truncate(25), flat_path(flat) %></strong></p>
+          <div class="p-0 m-0 text-small">
+            <p>Location: <%= flat.location %></p>
+            <p>Price: $<%= flat.price %></p>
+            <p>Number of Occupants: <%= flat.occupants %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 <%= render "shared/footer" %>

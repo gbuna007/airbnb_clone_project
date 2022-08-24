@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-
 # user with no attachment into any bookings or flats
 sarina = User.create(email: "sarina.y.ke@gmail.com", password: "sarina123", first_name: "Sarina", last_name: "Ke")
 
@@ -66,3 +65,4 @@ book1 = Booking.new(accepted: false, payment_received: true, start_date: Date.to
 book1.user = laura
 book1.flat = mansion
 book1.save!
+>>>>>>> master
