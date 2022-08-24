@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-sarina = User.create(email: "sarina.y.ke@gmail.com", password: "sarina123")
-laura = User.create(email: "laura.kim@gmail.com", password: "laura123")
-anushka = User.create(email: "anushka.p@gmail.com", password: "anushka123")
+sarina = User.create(email: "sarina.y.ke@gmail.com", password: "sarina123", first_name: "Sarina", last_name: "Ke")
+laura = User.create(email: "laura.kim@gmail.com", password: "laura123", first_name: "Laura", last_name: "Williams")
+anushka = User.create(email: "anushka.p@gmail.com", password: "anushka123", first_name: "Anushka", last_name: "Vodivya")
 
 mansion = Flat.new(name: "Mansion", location: "Beverly Hills", price: 10000, occupants: 10)
 mansion.user = sarina
