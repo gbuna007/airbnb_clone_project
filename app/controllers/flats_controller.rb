@@ -3,10 +3,11 @@ class FlatsController < ApplicationController
   before_action :set_flat, only: [:show]
 
   def index
-    @flats = Flat.all
+    @flats = policy_scope(Flat)
   end
 
   def show
+    authorize @flat
   end
 
   private

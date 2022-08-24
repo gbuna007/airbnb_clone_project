@@ -3,9 +3,9 @@ class CreateFlats < ActiveRecord::Migration[7.0]
     create_table :flats do |t|
       t.string :name
       t.string :location
-      t.float :price
+      t.decimal :price
       t.integer :occupants
-      t.references :user, null: false, foreign_key: true
+      t.references :user, foreign_key: true
       t.date :avail_dates
 
       t.timestamps
