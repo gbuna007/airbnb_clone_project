@@ -16,17 +16,16 @@ laura = User.create(email: "laura.kim@gmail.com", password: "laura123", first_na
 # users that creates flats - landlord
 anushka = User.create(email: "anushka.p@gmail.com", password: "anushka123", first_name: "Anushka", last_name: "Vodivya")
 
-# flats with open available dates
-mansion = Flat.new(name: "Mansion", location: "Beverly Hills", price: 10000, occupants: 10)
+# flats
+mansion = Flat.new(name: "Mansion", location: "Beverly Hills", price: 10000, occupants: 10, photo_url: 'app/assets/images/placeholder.jpeg')
 mansion.user = anushka
 mansion.save!
 
-house = Flat.new(name: "House", location: "NYC", price: 7000, occupants: 2)
+house = Flat.new(name: "House", location: "NYC", price: 7000, occupants: 2, photo_url: 'app/assets/images/placeholder.jpeg')
 house.user = anushka
 house.save!
 
-# flats with closed dates
-apartment = Flat.new(name: "Apartment", location: "SG", price: 1000, occupants: 3)
+apartment = Flat.new(name: "Apartment", location: "SG", price: 1000, occupants: 3, photo_url: 'app/assets/images/placeholder.jpeg')
 apartment.user = anushka
 apartment.save!
 
