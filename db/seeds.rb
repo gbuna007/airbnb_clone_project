@@ -16,15 +16,15 @@ laura = User.create(email: "laura@gmail.com", password: "laura123", first_name: 
 anushka = User.create(email: "anushka@gmail.com", password: "anushka123", first_name: "Anushka", last_name: "Vodivya")
 
 # flats
-mansion = Flat.new(name: "Mansion", location: "Beverly Hills", price: 10000, num_occupants: 10, photo_url: 'app/assets/images/placeholder.jpeg')
+mansion = Flat.new(name: "Mansion", location: "Beverly Hills", price: 10000, num_occupants: 10)
 mansion.user = anushka
 mansion.save!
 
-house = Flat.new(name: "House", location: "NYC", price: 7000, num_occupants: 2, photo_url: 'app/assets/images/placeholder.jpeg')
+house = Flat.new(name: "House", location: "NYC", price: 7000, num_occupants: 2)
 house.user = anushka
 house.save!
 
-apartment = Flat.new(name: "Apartment", location: "SG", price: 1000, num_occupants: 3, photo_url: 'app/assets/images/placeholder.jpeg')
+apartment = Flat.new(name: "Apartment", location: "SG", price: 1000, num_occupants: 3)
 apartment.user = anushka
 apartment.save!
 

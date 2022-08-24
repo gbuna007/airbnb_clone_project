@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root to: "flats#index"
-  resources :flats, only: [:show]
+  resources :users, only: %i[] do
+    resources :flats, only: %i[new create show]
+  end
 end
