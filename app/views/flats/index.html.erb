@@ -1,7 +1,20 @@
 <div class="container">
   <h1>All Flats</h1>
-  <% @flats.each do |flat| %>
-    <p><%= link_to flat.name, flat_path(flat) %></p>
-  <% end %>
+  <div class="grid-container">
+    <% @flats.each do |flat| %>
+      <div class ="border border-solid card m-3 col-sm-12">
+        <div class="card-img">card-img
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">><%= link_to flat.name, flat_path(flat) %></h4>
+          <div class="card-text">
+            <p>Location: <%= flat.location %></p>
+            <p>Price: $<%= flat.price %></p>
+            <p>Number of Occupants: <%= flat.occupants %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 <%= render "shared/footer" %>
