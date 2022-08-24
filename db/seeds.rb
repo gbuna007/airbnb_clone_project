@@ -6,18 +6,48 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+
+# user with no attachment into any bookings or flats
 sarina = User.create(email: "sarina.y.ke@gmail.com", password: "sarina123", first_name: "Sarina", last_name: "Ke")
+
+# user that makes bookings - renter
 laura = User.create(email: "laura.kim@gmail.com", password: "laura123", first_name: "Laura", last_name: "Williams")
+
+# users that creates flats - landlord
 anushka = User.create(email: "anushka.p@gmail.com", password: "anushka123", first_name: "Anushka", last_name: "Vodivya")
 
+# flats with open available dates
 mansion = Flat.new(name: "Mansion", location: "Beverly Hills", price: 10000, occupants: 10)
-mansion.user = sarina
-mansion.save
+mansion.user = anushka
+mansion.save!
 
 house = Flat.new(name: "House", location: "NYC", price: 7000, occupants: 2)
-house.user = laura
-house.save
+house.user = anushka
+house.save!
 
+# flats with closed dates
 apartment = Flat.new(name: "Apartment", location: "SG", price: 1000, occupants: 3)
 apartment.user = anushka
-apartment.save
+apartment.save!
+
+# completed bookings with no reviews yet
+book2 = Booking.new(accepted: true, payment_received: true, start_date: (Date.today - 10), end_date: (Date.today - 7))
+book2.user = laura
+book2.flat = house
+book2.save!
+
+# completed bookings with review
+book3 = Booking.new(accepted: true, payment_received: true, start_date: (Date.today - 15), end_date: (Date.today - 10))
+book3.user = laura
+book3.flat = mansion
+book3.save!
+
+review1 = Review.new(comment: "This is the best FakeBnB ever!", rating: 4.5)
+review1.booking = book3
+review1.save!
+
+# bookings with pending accept, payment received, landlord will need to accept the booking in order for the booking to be fully confirmed
+book1 = Booking.new(accepted: false, payment_received: true, start_date: Date.today, end_date: (Date.today + 4))
+book1.user = laura
+book1.flat = mansion
+book1.save!
