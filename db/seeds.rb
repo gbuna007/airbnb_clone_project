@@ -29,6 +29,22 @@ apartment = Flat.new(name: "Apartment", location: "SG", price: 1000, occupants: 
 apartment.user = anushka
 apartment.save!
 
+house1 = Flat.new(name: "Countryside house just outside the city", location: "Dublin", price: 3000, occupants: 5)
+house1.user = laura
+house1.save!
+
+house2 = Flat.new(name: "Rural seaside hut", location: "Bali", price: 7000, occupants: 6)
+house2.user = laura
+house2.save!
+
+apartment = Flat.new(name: "Small 3-room Apartment", location: "SG", price: 2500, occupants: 3)
+apartment.user = anushka
+apartment.save!
+
+apartment1 = Flat.new(name: "65sq medium room", location: "Budapest", price: 1200, occupants: 2)
+apartment1.user = anushka
+apartment1.save!
+
 # completed bookings with no reviews yet
 book2 = Booking.new(accepted: true, payment_received: true, start_date: (Date.today - 10), end_date: (Date.today - 7))
 book2.user = laura
