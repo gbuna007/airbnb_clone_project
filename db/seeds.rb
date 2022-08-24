@@ -65,4 +65,3 @@ book1 = Booking.new(accepted: false, payment_received: true, start_date: Date.to
 book1.user = laura
 book1.flat = mansion
 book1.save!
->>>>>>> master
