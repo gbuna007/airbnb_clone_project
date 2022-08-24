@@ -1,6 +1,20 @@
 // Specific CSS for your home-page
-.grid-container {
-  display: grid;
-  column-gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr;
+.container{
+  background-color: white;
+}
+
+.card{
+  border: none;
+}
+
+.text-small{
+  font-size: 12px;
+}
+
+.card-title{
+  font-size: 14px;
+}
+
+.round-img{
+  border-radius: 10%;
 }
