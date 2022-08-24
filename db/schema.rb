@@ -42,6 +42,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_062544) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.boolean "accepted"
+    t.date "start_date"
+    t.date "end_date"
+    t.bigint "user_id", null: false
+    t.bigint "flat_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "payment_received"
+    t.index ["flat_id"], name: "index_bookings_on_flat_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
   create_table "flats", force: :cascade do |t|
     t.string "name"
     t.string "location"
@@ -52,7 +65,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_062544) do
     t.string "photo_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "availability_status"
+    t.string "photo_url"
+    t.text "description"
+    t.integer "num_bedroom"
+    t.integer "num_bathroom"
+    t.string "amenities"
     t.index ["user_id"], name: "index_flats_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "comment"
+    t.float "rating"
+    t.bigint "booking_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,11 +94,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_062544) do
     t.string "first_name"
     t.string "last_name"
     t.string "role"
+    t.string "contact_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "flats"
+  add_foreign_key "bookings", "users"
   add_foreign_key "flats", "users"
+  add_foreign_key "reviews", "bookings"
 end
