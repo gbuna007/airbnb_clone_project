@@ -87,11 +87,10 @@ house1 = Flat.new(
   price: 3000,
   num_occupants: 5,
   num_bedroom: 1,
-  num_bathroom: 1
+  num_bathroom: 1,
   lng: 103.8198,
   lat: 1.3521,
-  lng: 103.8198,
-  lat: 1.3521)
+ )
 house1.user = laura
 house1.save!
 
