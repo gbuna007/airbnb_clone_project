@@ -60,6 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_062544) do
     t.string "name"
     t.text "description"
     t.string "location"
+    t.float "lat"
+    t.float "lng"
     t.decimal "price"
     t.integer "num_occupants"
     t.integer "num_bedroom"
