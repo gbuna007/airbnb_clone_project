@@ -13,4 +13,10 @@ Rails.application.routes.draw do
   end
 
   resources :bookings, only: %i[show]
+
+  resources :bookings do
+    member do
+      get :payment
+    end
+  end
 end

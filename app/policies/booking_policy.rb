@@ -6,6 +6,10 @@ class BookingPolicy < ApplicationPolicy
     # end
   end
 
+  def payment?
+    true
+  end
+
   def create?
     true
   end
