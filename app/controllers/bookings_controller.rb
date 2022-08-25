@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  before_action :set_booking, only: %i[show]
+
   def new
     authorize @booking
     @booking = Booking.new
@@ -13,11 +15,19 @@ class BookingsController < ApplicationController
     @booking.flat = @flat
     authorize @booking
     if @booking.save
-      redirect_to root_path, notice: "Booking created, please proceed with payment"
+      redirect_to @booking, notice: "Booking created, please proceed with payment"
     end
   end
 
+  def show
+    authorize @booking
+  end
+
   private
+
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :num_guests, :flat_id)
