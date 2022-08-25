@@ -48,16 +48,19 @@
   <div class="row booking-calendar">
     <div class="col-4">
       <div class="this-month">
-        <%= month_calendar do |date| %>
+        <%= month_calendar(events: @bookings, attribute: :start_date, end_attribute: :end_date) do |date, bookings| %>
           <%= date.day %>
+          <% bookings.each do |booking| %>
+            <div class="booking">
+              <p>Not Available</p>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
     <div class="col-4">
       <div class="next-month">
-        <%= month_calendar do |date| %>
-          <%= date.day %>
-        <% end %>
+        <p>To Add here</p>
       </div>
     </div>
 

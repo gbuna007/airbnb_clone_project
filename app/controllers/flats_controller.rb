@@ -19,6 +19,11 @@ class FlatsController < ApplicationController
     @marker = @flat.attributes
     @markers =[]
     @markers << @marker.select! { |key| key == "lat" || key == "lng" }
+
+    start_date = params.fetch(:start_date, Date.today).to_date
+
+    @bookings = Booking.where(start_date: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week).where(flat_id: @flat).where(payment_received: true).where(accepted: true)
+
   end
 
   def new
