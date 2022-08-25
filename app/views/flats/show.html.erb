@@ -2,7 +2,18 @@
 <p>Location: <%= @flat.location %></p>
 <p>Price: $<%= @flat.price %></p>
 <p>Number of Occupants: <%= @flat.occupants %></p>
+
 <p>Owner: <%= "#{@flat.user.first_name}  #{@flat.user.last_name}" %>
 <br>
 <hr>
+<%# TODO: ONLY CREATOR OF LISTING WILL BE ABLE TO SEE THIS, WILL BE DONE AFTER LUNCH %>
 <%= link_to "Edit Listing", edit_user_flat_path(current_user, @flat) %>
+
+
+<h1>IMAGES</h1>
+
+<h1>DETAILS</h1>
+
+<h1>BOOKING SECTION</h1>
+
+<h1>MAP</h1>
