@@ -57,6 +57,8 @@ gem "sassc-rails"
 
 gem "devise"
 
+gem "geocoder"
+
 gem "simple_calendar", "~> 2.4"
 
 gem "geocoder"

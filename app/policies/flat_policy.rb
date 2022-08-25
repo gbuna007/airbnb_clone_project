@@ -15,14 +15,14 @@ class FlatPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    record.user == user
   end
 
   def update?
-    true
+    record.user == user
   end
 
   def destroy?
-    true
+    record.user == user
   end
 end
