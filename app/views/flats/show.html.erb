@@ -1,10 +1,18 @@
 <div class ="container my-3">
 
   <h1>IMAGES</h1>
-  <%# <%= cl_image_tag("",
-    width: 400, height: 300, crop: :fill) %>
-
-
+  <div class="container d-flex">
+    <div>
+      <%= cl_image_tag("fakeairbnb/stockbg2_hdwzpa.jpg", class: "m-2" ,width: 500, height: 300, crop: :fill) %>
+    </div>
+    <div>
+      <div class="row">
+        <% @texts.each do |text| %>
+          <p class="card border border-solid m-3 p-3" style="width: 200">image placeholder</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <h1>DETAILS</h1>
   <div class="container border rounded-3 shadow-sm py-4 px-5 bg-light">
     <h1 class="d-flex justify-content-center"><%= @flat.name %></h1>
@@ -67,3 +75,8 @@
 </div>
 
 <h1>MAP</h1>
+<div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>

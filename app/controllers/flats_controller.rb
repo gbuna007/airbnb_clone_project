@@ -11,10 +11,14 @@ class FlatsController < ApplicationController
   end
 
   def show
-    authorize @flat
     @booking = Booking.new
     @booking.user = current_user
-  end
+    @texts = %w[a b c d]
+
+    authorize @flat
+    @markers = @flat.attributes
+    @markers.select! { |key| key == "lat" || key == "lng" }
+end
 
   def new
     @user = User.find(params[:user_id])
