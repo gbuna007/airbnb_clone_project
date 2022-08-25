@@ -59,6 +59,8 @@ gem "devise"
 
 gem "simple_calendar", "~> 2.4"
 
+gem "geocoder"
+
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
