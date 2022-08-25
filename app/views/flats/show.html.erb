@@ -2,3 +2,7 @@
 <p>Location: <%= @flat.location %></p>
 <p>Price: $<%= @flat.price %></p>
 <p>Number of Occupants: <%= @flat.occupants %></p>
+<p>Owner: <%= "#{@flat.user.first_name}  #{@flat.user.last_name}" %>
+<br>
+<hr>
+<%= link_to "Edit Listing", edit_user_flat_path(current_user, @flat) %>
