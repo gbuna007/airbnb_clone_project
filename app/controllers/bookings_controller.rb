@@ -26,6 +26,8 @@ class BookingsController < ApplicationController
   def payment
     authorize @booking
     @payment = @booking.payment_received
+    @booking_attr_as_array = []
+    @booking_attr_as_array << @booking.attributes
   end
 
   private
