@@ -9,38 +9,32 @@
   <p>Price: $<%= @flat.price %></p>
   <p>Number of Occupants: <%= @flat.num_occupants %></p>
   <p>Owner: <%= "#{@flat.user.first_name}  #{@flat.user.last_name}" %>
-  <h1><%= @flat.name %></h1>
-  <p>Location: <%= @flat.location %></p>
-  <p>Price: $<%= @flat.price %></p>
-  <p>Number of Occupants: <%= @flat.num_occupants %></p>
-</div>
 
-<h1>BOOKING SECTION</h1>
-<div class="row booking-calendar">
-  <div class="col-5">
-    <div class="this-month">
-      <%= month_calendar do |date| %>
-        <%= date %>
+  <h1>BOOKING SECTION</h1>
+  <div class="row booking-calendar">
+    <div class="col-5">
+      <div class="this-month">
+        <%= month_calendar do |date| %>
+          <%= date %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="next-month">
+        <%= month_calendar do |date| %>
+          <%= date %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-2">
+      <%= simple_form_for ([@flat, @booking]) do |f| %>
+        <%= f.input :start_date %>
+        <%= f.input :end_date %>
+        <%= f.input :num_guests %>
+        <%= f.button :submit %>
       <% end %>
     </div>
   </div>
-  <div class="col-5">
-    <div class="next-month">
-      <%= month_calendar do |date| %>
-        <%= date %>
-      <% end %>
-    </div>
-  </div>
-  <div class="col-2">
-    <%= simple_form_for ([@flat, @booking]) do |f| %>
-      <%= f.input :start_date %>
-      <%= f.input :end_date %>
-      <%= f.input :num_guests %>
-      <%= f.button :submit %>
-    <% end %>
-  </div>
-</div>
-
 </div>
 
 
