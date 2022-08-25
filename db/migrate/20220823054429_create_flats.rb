@@ -10,7 +10,6 @@ class CreateFlats < ActiveRecord::Migration[7.0]
       t.integer :num_occupants
       t.integer :num_bedroom
       t.integer :num_bathroom
-      t.string :amenities
       t.date :avail_dates
       t.boolean :availibility_status
       t.string :photo_url, default: nil
