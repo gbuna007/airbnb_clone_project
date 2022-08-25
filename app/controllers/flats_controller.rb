@@ -13,11 +13,12 @@ class FlatsController < ApplicationController
   def show
     @booking = Booking.new
     @booking.user = current_user
+    @texts = %w[a b c d]
 
     authorize @flat
     @markers = @flat.attributes
     @markers.select! { |key| key == "lat" || key == "lng" }
-  end
+end
 
   def new
     @user = User.find(params[:user_id])
