@@ -12,6 +12,8 @@ class FlatsController < ApplicationController
 
   def show
     authorize @flat
+    @booking = Booking.new
+    @booking.user = current_user
   end
 
   private

@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   root to: "flats#index"
   resources :users, only: %i[] do
     resources :flats, only: %i[new create show]
+  end
+
+  resources :flats do
     resources :bookings, only: %i[new create]
   end
 end
