@@ -54,7 +54,7 @@ class FlatsController < ApplicationController
   private
 
   def flat_params
-    params.require(:flat).permit(%i[name location price occupants num_bedroom num_bathroom amenitites avail_dates availability_status description])
+    params.require(:flat).permit(%i[name location price num_occupants num_bedroom num_bathroom amenitites avail_dates availability_status description])
   end
 
   def set_flat
