@@ -1,12 +1,35 @@
 <h1><%= @flat.name %></h1>
 <p>Location: <%= @flat.location %></p>
 <p>Price: $<%= @flat.price %></p>
-<p>Number of Occupants: <%= @flat.occupants %></p>
+<p>Number of Occupants: <%= @flat.num_occupants %></p>
 
 <h1>IMAGES</h1>
 
 <h1>DETAILS</h1>
 
 <h1>BOOKING SECTION</h1>
+<div class="row booking-calendar">
+  <div class="col-5">
+    <div class="this-month">
+      <%= month_calendar do |date| %>
+        <%= date %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-5">
+    <div class="next-month">
+      <%= month_calendar do |date| %>
+        <%= date %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-2">
+
+  </div>
+
+</div>
+
+
+
 
 <h1>MAP</h1>
