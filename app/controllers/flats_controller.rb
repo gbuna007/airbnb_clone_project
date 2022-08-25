@@ -15,7 +15,8 @@ class FlatsController < ApplicationController
     @booking.user = current_user
 
     authorize @flat
-
+    @markers = @flat.attributes
+    @markers.select! { |key| key == "lat" || key == "lng" }
   end
 
   def new
