@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_24_062544) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_25_052853) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_062544) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "amenities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "bookings", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
@@ -55,6 +61,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_062544) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
+  create_table "flat_amenities", force: :cascade do |t|
+    t.bigint "flat_id", null: false
+    t.bigint "amenity_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["amenity_id"], name: "index_flat_amenities_on_amenity_id"
+    t.index ["flat_id"], name: "index_flat_amenities_on_flat_id"
+  end
+
   create_table "flats", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -63,7 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_062544) do
     t.integer "num_occupants"
     t.integer "num_bedroom"
     t.integer "num_bathroom"
-    t.string "amenities"
     t.date "avail_dates"
     t.boolean "availibility_status"
     t.string "photo_url"
@@ -101,6 +115,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_062544) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "flats"
   add_foreign_key "bookings", "users"
+  add_foreign_key "flat_amenities", "amenities"
+  add_foreign_key "flat_amenities", "flats"
   add_foreign_key "flats", "users"
   add_foreign_key "reviews", "bookings"
 end
