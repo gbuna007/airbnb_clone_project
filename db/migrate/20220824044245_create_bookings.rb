@@ -7,6 +7,7 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.boolean :accepted
       t.references :user, foreign_key: true
       t.references :flat, foreign_key: true
+      t.integer :num_guests
 
       t.timestamps
     end

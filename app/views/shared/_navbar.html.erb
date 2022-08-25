@@ -20,6 +20,9 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
+            <%= link_to "Create a Flat Listing", new_user_flat_path(current_user), class: "nav-link" %>
+          </li>
+          <li class="nav-item active">
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">

@@ -4,6 +4,8 @@ class CreateFlats < ActiveRecord::Migration[7.0]
       t.string :name
       t.text :description
       t.string :location
+      t.float :lat
+      t.float :lng
       t.decimal :price
       t.integer :num_occupants
       t.integer :num_bedroom

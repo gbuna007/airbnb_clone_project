@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   resources :users, only: %i[] do
     resources :flats
   end
+
+  resources :flats do
+    resources :bookings, only: %i[new create]
+  end
+
+  resources :bookings, only: %i[show]
 end
