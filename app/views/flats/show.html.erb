@@ -45,7 +45,7 @@
 
   <h1 class="mt-4 mb-3">BOOK THIS FLAT:</h1>
   <div class="row booking-calendar">
-    <div class="col-5">
+    <div class="col-5 pt-2 me-3">
       <div class="this-month">
         <%= month_calendar(events: @bookings_this_month, attribute: :start_date, end_attribute: :end_date) do |date, bookings| %>
           <%= date.day %>
@@ -57,16 +57,16 @@
         <% end %>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-4 pt-2 bg-danger bg-opacity-25">
       <%= render "form_booking" %>
     </div>
   </div>
 
-</div>
+  <h1>MAP</h1>
+  <div style="width: 100%; height: 400px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 
-<h1>MAP</h1>
-<div style="width: 100%; height: 400px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
