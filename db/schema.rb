@@ -55,6 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_052853) do
     t.boolean "accepted"
     t.bigint "user_id"
     t.bigint "flat_id"
+    t.integer "num_guests"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["flat_id"], name: "index_bookings_on_flat_id"
@@ -74,6 +75,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_052853) do
     t.string "name"
     t.text "description"
     t.string "location"
+    t.float "lat"
+    t.float "lng"
     t.decimal "price"
     t.integer "num_occupants"
     t.integer "num_bedroom"
