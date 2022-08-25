@@ -1,19 +1,24 @@
-<h1><%= @flat.name %></h1>
-<p>Location: <%= @flat.location %></p>
-<p>Price: $<%= @flat.price %></p>
-<p>Number of Occupants: <%= @flat.occupants %></p>
+<div class ="container my-3">
+  <div class="navbar">
+    <h1><%= @flat.name %></h1>
+      <% if policy(@flat).edit? %>
+        <%= link_to "Edit Listing", edit_user_flat_path(current_user, @flat) %>
+      <% end %>
+  </div>
+  <p>Location: <%= @flat.location %></p>
+  <p>Price: $<%= @flat.price %></p>
+  <p>Number of Occupants: <%= @flat.num_occupants %></p>
+  <p>Owner: <%= "#{@flat.user.first_name}  #{@flat.user.last_name}" %>
+  <br>
+  <hr>
+  <%# TODO: ONLY CREATOR OF LISTING WILL BE ABLE TO SEE THIS, WILL BE DONE AFTER LUNCH %>
 
-<p>Owner: <%= "#{@flat.user.first_name}  #{@flat.user.last_name}" %>
-<br>
-<hr>
-<%# TODO: ONLY CREATOR OF LISTING WILL BE ABLE TO SEE THIS, WILL BE DONE AFTER LUNCH %>
-<%= link_to "Edit Listing", edit_user_flat_path(current_user, @flat) %>
 
+  <h1>IMAGES</h1>
 
-<h1>IMAGES</h1>
+  <h1>DETAILS</h1>
 
-<h1>DETAILS</h1>
+  <h1>BOOKING SECTION</h1>
 
-<h1>BOOKING SECTION</h1>
-
-<h1>MAP</h1>
+  <h1>MAP</h1>
+</div>
