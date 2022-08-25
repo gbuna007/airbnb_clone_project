@@ -1,6 +1,6 @@
 class FlatsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[show index]
-  before_action :set_flat, only: %i[show edit update]
+  before_action :set_flat, only: %i[show edit update destroy]
 
   def index
     @flats = policy_scope(Flat)
@@ -49,6 +49,11 @@ class FlatsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @flat.destroy
+    redirect_to root_path
   end
 
   private
