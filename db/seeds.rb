@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+# USERS
 # visitor
 sarina = User.create(email: "sarina@gmail.com", password: "sarina123", first_name: "Sarina", last_name: "Ke")
 
@@ -14,6 +15,98 @@ laura = User.create(email: "laura@gmail.com", password: "laura123", first_name: 
 
 # landlord
 anushka = User.create(email: "anushka@gmail.com", password: "anushka123", first_name: "Anushka", last_name: "Vodivya")
+
+# AMENITIES
+wifi = Amenity.create(name: "Wifi")
+tv = Amenity.create(name: "TV")
+ac = Amenity.create(name: "Air Conditioning")
+workspace = Amenity.create(name: "Workspace")
+kitchen = Amenity.create(name: "Kitchen")
+balcony = Amenity.create(name: "Private Balcony")
+public_pool = Amenity.create(name: "Public Pool")
+private_pool = Amenity.create(name: "Private Pool")
+paid_parking = Amenity.create(name: "Paid Parking")
+free_parking = Amenity.create(name: "Free Parking")
+garden = Amenity.create(name: "Garden")
+pets = Amenity.create(name: "Pets Allowed")
+smoke_alarm = Amenity.create(name: "Smoke Alarm")
+
+# FLATS
+flat1 = Flat.new(
+  name: "Aura House 2bds Eco Bamboo House, Pool, River View",
+  description: "Aura house is a beautiful & unique eco bamboo house built on the west bank of the River Ayung facing east to catch sunrise. Aura House is situated 25min away from Ubud, and 35min away from Canggu.",
+  location: "Abiansemal, Bali, Indonesia",
+  price: 502,
+  num_occupants: 4,
+  num_bedroom: 2,
+  num_bathroom: 2,
+  lng: 103.8198,
+  lat: 1.3521)
+flat1.user = anushka
+flat1.save!
+
+flat_amenities = FlatAmenity.create(flat: flat1, amenity: wifi)
+flat_amenities = FlatAmenity.create(flat: flat1, amenity: tv)
+
+flat2 = Flat.new(
+  name: "Turtle Bay HuaHin eco luxeTurt Villa in Lotus Bay",
+  description: "A unique Turtle Shape villa located in natural lotus pond surrounding by nature Khao Tao Valley and Sai Noi beach. Private one bed room studio villa comprising spacious bathroom and outdoor waterside living deck.",
+  location: "Tambon Nong Kae, Chang Wat Prachuap Khiri Khan, Thailand",
+  price: 135,
+  num_occupants: 2,
+  num_bedroom: 1,
+  num_bathroom: 1,
+  lng: 103.8198,
+  lat: 1.3521)
+flat2.user = anushka
+flat2.save!
+
+flat_amenities = FlatAmenity.create(flat: flat2, amenity: ac)
+flat_amenities = FlatAmenity.create(flat: flat2, amenity: workspace)
+
+flat3 = Flat.new(
+  name: "Nacpan Beach Glamping, Ocean View Room",
+  description: "Nacpan Glamping is located on one of the top rated beaches in Asia, ‘Nacpan Beach’, El Nido, Palawan. Stretching 4.2km, this white sand beach is fast becoming a World renowned must see destination in the Philippines.",
+  location: "El Nido, Philippines",
+  price: 225,
+  num_occupants: 2,
+  num_bedroom: 1,
+  num_bathroom: 1,
+  lng: 103.8198,
+  lat: 1.3521)
+flat3.user = anushka
+flat3.save!
+
+flat_amenities = FlatAmenity.create(flat: flat3, amenity: kitchen)
+flat_amenities = FlatAmenity.create(flat: flat3, amenity: balcony)
+
+house1 = Flat.new(
+  name: "Countryside apartment just outside the city",
+  description: "A unique bamboo house and a work of art. Both the river valley view & interior are remarkable, providing such a marvelous feast to the eyes that guests find it extraordinary to live so in touch with nature but in complete luxury",
+  location: "Dublin",
+  price: 3000,
+  num_occupants: 5,
+  num_bedroom: 1,
+  num_bathroom: 1,
+  lng: 103.8198,
+  lat: 1.3521,
+ )
+house1.user = laura
+house1.save!
+
+flat_amenities = FlatAmenity.create(flat: house1, amenity: public_pool)
+flat_amenities = FlatAmenity.create(flat: house1, amenity: paid_parking)
+
+house2 = Flat.new(
+  name: "Rural seaside hut",
+  description: "Hideout Horizon is the largest addition to the Hideout Family. The most adventurous all-bamboo home is ready to welcome those seeking a little jungle adventure in East Karangasem. Your perfect little staycation in Bali is right here. We take relaxation seriously.",
+  location: "Bali",
+  price: 7000,
+  num_occupants: 6,
+  num_bedroom: 1,
+  num_bathroom: 1,
+  lng: 103.8198,
+  lat: 1.3521)
 
 # flats
 mansion = Flat.new(name: "Mansion", location: "Beverly Hills", price: 10000, num_occupants: 10, lng: 103.8198, lat: 1.3521)
@@ -41,19 +134,35 @@ house1.user = laura
 house1.save!
 
 house2 = Flat.new(name: "Rural seaside hut", location: "Bali", price: 7000, num_occupants: 6, lng: 103.9198, lat: 1.314650)
+
+
+
+
+
+
+
+
+
+
+
+
 house2.user = laura
 house2.save!
 
+flat_amenities = FlatAmenity.create(flat: house2, amenity: private_pool)
+flat_amenities = FlatAmenity.create(flat: house2, amenity: free_parking)
+
+# LAURA'S BOOKINGS
 # booking with no reviews
 book1 = Booking.new(accepted: true, payment_received: true, start_date: (Date.today - 10), end_date: (Date.today - 7), num_guests: 2)
 book1.user = laura
-book1.flat = house
+book1.flat = flat1
 book1.save!
 
 # booking with a review
 book2 = Booking.new(accepted: true, payment_received: true, start_date: (Date.today - 15), end_date: (Date.today - 10), num_guests: 2)
 book2.user = laura
-book2.flat = mansion
+book2.flat = flat2
 book2.save!
 
 review = Review.new(comment: "This is the best FakeBnB ever!", rating: 4.5)
@@ -63,7 +172,5 @@ review.save!
 # booking with payment received, pending acceptance
 book3 = Booking.new(accepted: false, payment_received: true, start_date: Date.today, end_date: (Date.today + 4), num_guests: 2)
 book3.user = laura
-book3.flat = mansion
+book3.flat = flat3
 book3.save!
-
-# booking with payment received, accepted

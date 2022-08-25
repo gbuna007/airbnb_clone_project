@@ -1,14 +1,40 @@
 <div class ="container my-3">
-  <div class="navbar">
-    <h1><%= @flat.name %></h1>
-      <% if policy(@flat).edit? %>
-        <%= link_to "Edit Listing", edit_user_flat_path(current_user, @flat) %>
-      <% end %>
+
+  <h1>IMAGES</h1>
+  <%# <%= cl_image_tag("",
+    width: 400, height: 300, crop: :fill) %>
+
+
+  <h1>DETAILS</h1>
+  <div class="container border rounded-3 shadow-sm py-4 px-5 bg-light">
+    <h1 class="d-flex justify-content-center"><%= @flat.name %></h1>
+
+    <div class="container border rounded-3 py-4 px-5 d-flex justify-content-center">
+      <p class="w-50 border-end m-0 pe-3"><%= @flat.description %></p>
+
+      <div class="border-end m-0 px-3">
+        <h2>Info</h2>
+        <ul>
+          <li>Address: <%= @flat.location %></li>
+          <li>Location: <%= @flat.location %></li>
+          <li>Price: $<%= @flat.price %></li>
+          <li>Number of Occupants: <%= @flat.num_occupants %></li>
+          <li>Number of Bedrooms: <%= @flat.num_bedroom %></li>
+          <li>Number of Bathrooms: <%= @flat.num_bathroom %></li>
+          <li>Owner: <%= "#{@flat.user.first_name}  #{@flat.user.last_name}" %></li>
+        </ul>
+      </div>
+
+      <div class="m-0 ps-3">
+        <h2>Amenities</h2>
+        <ul>
+          <% @flat.amenities.each do |amenity| %>
+            <li><%= amenity.name %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
-  <p>Location: <%= @flat.location %></p>
-  <p>Price: $<%= @flat.price %></p>
-  <p>Number of Occupants: <%= @flat.num_occupants %></p>
-  <p>Owner: <%= "#{@flat.user.first_name}  #{@flat.user.last_name}" %>
 
   <h1>BOOKING SECTION</h1>
   <div class="row booking-calendar">
@@ -19,6 +45,7 @@
         <% end %>
       </div>
     </div>
+
     <div class="col-5">
       <div class="next-month">
         <%= month_calendar do |date| %>
@@ -26,6 +53,7 @@
         <% end %>
       </div>
     </div>
+
     <div class="col-2">
       <%= simple_form_for ([@flat, @booking]) do |f| %>
         <%= f.input :start_date %>
@@ -35,10 +63,8 @@
       <% end %>
     </div>
   </div>
+
 </div>
-
-
-
 
 <h1>MAP</h1>
 <div style="width: 100%; height: 600px;"
