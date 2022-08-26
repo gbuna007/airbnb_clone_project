@@ -2,7 +2,7 @@ class FlatPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.all
+      scope.all # users can see all flats
     end
   end
 
@@ -10,11 +10,11 @@ class FlatPolicy < ApplicationPolicy
     true
   end
 
-  def new?
+  def show?
     true
   end
 
-  def show?
+  def new?
     true
   end
 

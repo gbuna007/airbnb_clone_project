@@ -2,10 +2,11 @@ class FlatsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[home show]
   before_action :set_flat, only: %i[show edit update destroy]
 
-  # home/landing page (a user can see all flats)
+  # home/landing page (a user can view all flats)
   # /
   def home
     @flats = policy_scope(Flat)
+
     if params[:query].present?
       sql_query = "name ILIKE :query OR location ILIKE :query"
       @flats = Flat.where(sql_query, query: "%#{params[:query]}%")
@@ -14,21 +15,24 @@ class FlatsController < ApplicationController
     end
   end
 
-  # host dashboard
+  # a host can view host dashboard (index)
+  # /flats
   def index
   end
 
-  # a user can see a specific flat
+  # a user can view a flat
   # /flats/:flat_id
   def show
     authorize @flat
     @booking = Booking.new
     @booking.user = current_user
 
+    # for map
     @marker = @flat.attributes
     @markers = []
     @markers << @marker.select! { |key| key == "lat" || key == "lng" }
 
+    # for calendar
     this_month = params.fetch(:start_date, Date.today).to_date
     next_month = params.fetch(:start_date, Date.today + 1.month).to_date
 
@@ -37,12 +41,14 @@ class FlatsController < ApplicationController
   end
 
   # a host can create a flat
+  # /flats/new
   def new
     @user = current_user
     @flat = Flat.new
     authorize @flat
   end
 
+  # /flats/:id
   def create
     @flat = Flat.new(flat_params)
     @flat.user = current_user
@@ -55,6 +61,7 @@ class FlatsController < ApplicationController
   end
 
   # a host can edit a flat
+  # /flats/:id/edit
   def edit
     @user = current_user
     @flat.user = current_user
@@ -62,6 +69,7 @@ class FlatsController < ApplicationController
     authorize @flat
   end
 
+  # /flats/:id
   def update
     @flat.update(flat_params)
     @flat.user = current_user
@@ -75,11 +83,15 @@ class FlatsController < ApplicationController
     end
   end
 
+  # a host can delete a flat (delete)
+  # /flats
   def destroy
     authorize @flat
     @flat.destroy
     redirect_to root_path, status: :see_other
   end
+
+  # a host can update/reject a booking
 
   private
 
