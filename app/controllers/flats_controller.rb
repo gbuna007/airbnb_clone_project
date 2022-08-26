@@ -2,7 +2,7 @@ class FlatsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[home show]
   before_action :set_flat, only: %i[show edit update destroy]
 
-  # home/landing page (a user can see all flats)
+  # home/landing page (a user can view all flats)
   # /
   def home
     @flats = policy_scope(Flat)
@@ -15,11 +15,12 @@ class FlatsController < ApplicationController
     end
   end
 
-  # host dashboard
+  # a host can view host dashboard (index)
+  # /flats
   def index
   end
 
-  # a user can see a specific flat
+  # a user can view a flat
   # /flats/:flat_id
   def show
     authorize @flat
@@ -40,6 +41,7 @@ class FlatsController < ApplicationController
   end
 
   # a host can create a flat
+  # /flats/new
   def new
     @user = User.find(params[:user_id])
     @flat = Flat.new
@@ -47,6 +49,7 @@ class FlatsController < ApplicationController
     authorize @flat
   end
 
+  # /flats/:id
   def create
     @flat = Flat.new(flat_params)
     @flat.user = current_user
@@ -59,6 +62,7 @@ class FlatsController < ApplicationController
   end
 
   # a host can edit a flat
+  # /flats/:id/edit
   def edit
     @user = current_user
     @flat.user = current_user
@@ -66,6 +70,7 @@ class FlatsController < ApplicationController
     authorize @flat
   end
 
+  # /flats/:id
   def update
     @flat.update(flat_params)
     authorize @flat
@@ -76,11 +81,15 @@ class FlatsController < ApplicationController
     end
   end
 
+  # a host can delete a flat (delete)
+  # /flats
   def destroy
     authorize @flat
     @flat.destroy
     redirect_to user_flats_path, status: :see_other
   end
+
+  # a host can update/reject a booking
 
   private
 

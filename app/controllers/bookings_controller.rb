@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[edit show payment payment_update update destroy]
 
-  # a renter can see the renter dashboard
+  # a renter can view  renter dashboard
   # /bookings
   def index
     @bookings = policy_scope(Booking)
@@ -10,23 +10,27 @@ class BookingsController < ApplicationController
   end
 
   # a renter can create a booking (booking confirmation page)
-  # /bookings/:id SHOULD BE /NEW
+  # /bookings/new
   def new
-    authorize @booking
+    # @user = User.where(params[:user_id])
+    @flat = Flat.find(params[:flat_id])
     @booking = Booking.new
-    @user = User.where(params[:user_id])
-    @flat = Flat.where(params[:flat_id])
+    authorize @booking
   end
 
+  # /bookings/:id
   def create
-    if user_signed_in?
-      @booking = Booking.new(booking_params)
-      authorize @booking
+    # checks if user is signed in or not
+    @booking = Booking.new(booking_params)
+    authorize @booking
 
+    if user_signed_in?
       @booking.user = current_user
+
       @flat = Flat.find_by_id(params[:flat_id])
       @booking.flat = @flat
 
+      # checks if form is filled in correctly
       if @booking.save
         redirect_to @booking, notice: "Booking created, please proceed with payment"
       else
@@ -37,7 +41,7 @@ class BookingsController < ApplicationController
     end
   end
 
-  # a renter can pay (payment page)
+  # a renter can pay for a booking (payment page)
   # /bookings/:id/payment
   # takes you back to /bookings/:id after
   def payment
@@ -51,12 +55,14 @@ class BookingsController < ApplicationController
     redirect_to @booking
   end
 
-  # a renter can see a booking
+  # a renter can view a booking
   # /bookings/:id
   def show
     authorize @booking
   end
 
+  # a renter can edit a booking
+  # /bookings/:id/edit
   def edit
     authorize @booking
     @user = current_user
@@ -70,6 +76,7 @@ class BookingsController < ApplicationController
     @bookings_next_month = Booking.where(start_date: next_month.beginning_of_month.beginning_of_week..next_month.end_of_month.end_of_week).where(flat_id: @flat).where(payment_received: true).where(accepted: true)
   end
 
+  # bookings/:id
   def update
     @booking.update(booking_params)
 
@@ -82,6 +89,8 @@ class BookingsController < ApplicationController
     end
   end
 
+  # a renter can delete a booking
+  # /bookings
   def destroy
     authorize @booking
     @booking.destroy
