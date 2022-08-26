@@ -6,5 +6,6 @@
   <%= f.input :description %>
   <%= f.input :num_bedroom %>
   <%= f.input :num_bathroom %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit %>
   <% end %>

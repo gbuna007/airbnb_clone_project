@@ -1,14 +1,28 @@
 <div class ="container my-3">
 
-  <h1>IMAGES</h1>
-  <div class="container d-flex">
+  <div class="navbar">
+    <h1>IMAGES</h1>
     <div>
-      <%= cl_image_tag("fakeairbnb/stockbg2_hdwzpa.jpg", class: "m-2" ,width: 500, height: 300, crop: :fill) %>
+     <% if policy(@flat).edit? %>
+        <%= link_to "Edit Listing", edit_user_flat_path(current_user, @flat), class: "btn btn-outline-warning hoverable" %>
+        <%= link_to "Delete Listing", "#", class: "btn btn-outline-danger hoverable" %>
+      <% end %>
+  </div>
+  </div>
+  <div class="container row m-2">
+    <div class="flex-grow-1 col-12 col-md-6">
+      <% if @flat.photos.first.nil? %>
+        <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img p-0 img-fluid"), user_flat_path(flat.user.id, flat.id) %>
+      <% else %>
+        <%= cl_image_tag(@flat.photos.first.key, class:"img-fluid") %>
+      <% end %>
     </div>
-    <div>
-      <div class="row">
-        <% @texts.each do |text| %>
-          <p class="card border border-solid m-3 p-3" style="width: 200">image placeholder</p>
+    <div class="col-6 col-md-6">
+      <div class="row py-5">
+        <% @flat.photos.each do |photo| %>
+        <div class="card m-2 col-5">
+          <%= cl_image_tag photo.key, class:"img-fluid" %>
+        </div>
         <% end %>
       </div>
     </div>
