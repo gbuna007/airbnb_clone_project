@@ -9,14 +9,14 @@
       <% flat.photos.each do |photo|%>
         <% if photo == flat.photos.first %>
           <div class="carousel-item active">
-          <%= link_to user_flat_path(flat.user.id, flat.id) do %>
-            <%= cl_image_tag photo.key, class:"img-fluid round-img p-0 m-0" %>
+          <%= link_to flat_path(flat.id) do %>
+            <%= cl_image_tag photo.key, class:"flat-img round-img p-0 m-0" %>
           <% end %>
           </div>
         <%else%>
           <div class="carousel-item">
-          <%= link_to user_flat_path(flat.user.id, flat.id) do %>
-            <%= cl_image_tag photo.key, class:"img-fluid round-img p-0 m-0" %>
+          <%= link_to flat_path(flat.id) do %>
+            <%= cl_image_tag photo.key, class:"flat-img round-img p-0 m-0" %>
           <% end %>
           </div>
         <%end%>
