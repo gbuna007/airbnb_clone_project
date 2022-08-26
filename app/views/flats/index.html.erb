@@ -6,6 +6,29 @@
 
   <div class="border mb-3 p-3 bg-light">
     <div class="mb-3 navbar">
+      <h2 class="m-0">Your Flats</h2>
+    </div>
+
+    <div class="bg-white">
+      <% @flats.each do |flat| %>
+        <div class="notification">
+          <%= cl_image_tag( "goldgate.jpg", class:"avatar-large") %>
+          <%# <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> %>
+          <div class="notification-content">
+            <p><%= flat.name %></p>
+          </div>
+
+          <div class="notification-actions">
+            <a href="#">Edit <i class="fas fa-pencil-alt"></i></a>
+            <a href="#">Delete <i class="far fa-trash-alt"></i></a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="border mb-3 p-3 bg-light">
+    <div class="mb-3 navbar">
       <h2 class="m-0">Upcoming Bookings</h2>
     </div>
 
