@@ -1,6 +1,13 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[show payment]
 
+  def index
+    @bookings = policy_scope(Booking)
+    @user = current_user
+    # @bookings = Booking.all
+    # authorize @bookings
+  end
+
   def new
     authorize @booking
     @booking = Booking.new

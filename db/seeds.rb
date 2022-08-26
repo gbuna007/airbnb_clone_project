@@ -56,8 +56,8 @@ flat2 = Flat.new(
   num_occupants: 2,
   num_bedroom: 1,
   num_bathroom: 1,
-  lng: 103.8198,
-  lat: 1.3521)
+  lng: 101.8198,
+  lat: 1.3221)
 flat2.user = anushka
 flat2.save!
 
@@ -73,7 +73,7 @@ flat3 = Flat.new(
   num_bedroom: 1,
   num_bathroom: 1,
   lng: 103.8198,
-  lat: 1.3521)
+  lat: 1.286560)
 flat3.user = anushka
 flat3.save!
 
@@ -89,8 +89,7 @@ house1 = Flat.new(
   num_bedroom: 1,
   num_bathroom: 1,
   lng: 103.8198,
-  lat: 1.3521,
- )
+  lat: 1.314651)
 house1.user = laura
 house1.save!
 
@@ -105,47 +104,8 @@ house2 = Flat.new(
   num_occupants: 6,
   num_bedroom: 1,
   num_bathroom: 1,
-  lng: 103.8198,
-  lat: 1.3521)
-
-# flats
-mansion = Flat.new(name: "Mansion", location: "Beverly Hills", price: 10000, num_occupants: 10, lng: 103.8198, lat: 1.3521)
-mansion.user = anushka
-mansion.save!
-
-house = Flat.new(name: "House", location: "NYC", price: 7000, num_occupants: 2, lng: 101.8198, lat: 1.3221)
-house.user = anushka
-house.save!
-
-apartment = Flat.new(name: "Apartment", location: "SG", price: 1000, num_occupants: 3, lng: 103.8198, lat: 1.286560)
-apartment.user = anushka
-apartment.save!
-
-apartment = Flat.new(name: "Small 3-room Apartment", location: "SG", price: 2500, num_occupants: 3, lng: 103.8198, lat: 1.299080)
-apartment.user = anushka
-apartment.save!
-
-apartment1 = Flat.new(name: "65sq medium room", location: "Budapest", price: 1200, num_occupants: 2, lng: 103.8198, lat: 1.314650)
-apartment1.user = anushka
-apartment1.save!
-
-house1 = Flat.new(name: "Countryside house just outside the city", location: "Dublin", price: 3000, num_occupants: 5, lng: 103.8198, lat: 1.314651)
-house1.user = laura
-house1.save!
-
-house2 = Flat.new(name: "Rural seaside hut", location: "Bali", price: 7000, num_occupants: 6, lng: 103.9198, lat: 1.314650)
-
-
-
-
-
-
-
-
-
-
-
-
+  lng: 103.9198,
+  lat: 1.314650)
 house2.user = laura
 house2.save!
 

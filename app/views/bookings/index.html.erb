@@ -1,0 +1,14 @@
+<div class="container">
+  <div>
+    <h1>Welcome <%= @user.first_name %>!</h1>
+    <!-- LINK TO HOST DASHBOARD -->
+  </div>
+
+  <div>
+    <div>
+      <h2>Upcoming Bookings</h2>
+      <!-- LINK TO ADD NEW BOOKING PAGE -->
+      <%= link_to "Add New Booking", new_booking_path %>
+    </div>
+  </div>
+</div>
