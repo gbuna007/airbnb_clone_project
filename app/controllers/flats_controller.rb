@@ -18,6 +18,8 @@ class FlatsController < ApplicationController
   # a host can view host dashboard (index)
   # /flats
   def index
+    @flats = policy_scope(Flat)
+    authorize @flats
   end
 
   # a user can view a flat

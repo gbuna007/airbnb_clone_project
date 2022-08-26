@@ -1,0 +1,52 @@
+<div class="container mt-3">
+  <div class="navbar">
+    <h1>Welcome <%= current_user.first_name %>!</h1>
+    <%= link_to "Switch to Renter Dashboard", bookings_path(current_user), class: "btn btn-outline-secondary" %>
+  </div>
+
+  <div class="border mb-3 p-3 bg-light">
+    <div class="mb-3 navbar">
+      <h2 class="m-0">Upcoming Bookings</h2>
+      <%= link_to "Add New Booking", new_flat_booking_path(current_user), class: "btn btn-outline-secondary" %>
+    </div>
+
+    <div class="bg-white">
+      <% @bookings.each do |booking| %>
+        <div class="notification">
+          <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+          <div class="notification-content">
+            <p><small><%= booking.start_date %></small></p>
+            <p><%= booking.flat.name %></p>
+          </div>
+
+          <div class="notification-actions">
+            <a href="#">Edit <i class="fas fa-pencil-alt"></i></a>
+            <a href="#">Delete <i class="far fa-trash-alt"></i></a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="border mb-3 p-3 bg-light">
+    <div class="mb-3 navbar">
+      <h2 class="m-0">Past Bookings</h2>
+    </div>
+
+    <div class="bg-white">
+      <% @bookings.each do |booking| %>
+        <div class="notification">
+          <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+          <div class="notification-content">
+            <p><small><%= booking.end_date %></small></p>
+            <p><%= booking.flat.name %></p>
+          </div>
+
+          <div class="notification-actions">
+            <a href="#">See Reviews <i class="fa-solid fa-star"></i></a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
