@@ -19,7 +19,7 @@
     <div class="col-3">
       <h2>Payment</h2>
       <%# Need to connect this to stimulus to change payment status to true when clicked %>
-      <a href="#" class="payment-button">Pay Now</a>
+      <%= link_to "Pay Now", payment_booking_path(@booking) %>
     </div>
   </div>
 </div>

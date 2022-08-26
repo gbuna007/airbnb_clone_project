@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <h1 class="my-4">Payment Page</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="left-section col-5">
+      <div class="d-flex flex-column">
+        <div class="mb-3">
+          <h2>Booking Summary</h2>
+          <div class="summary p-3 border rounded-2">
+            <p><strong>Flat Name:</strong> <%= @booking.flat.name %></p>
+            <p><strong>Address:</strong> <%= @booking.flat.location %></p>
+            <p><strong>Check In Date:</strong> <%= @booking.start_date %></p>
+            <p><strong>Check Out Date:</strong> <%= @booking.end_date %></p>
+            <p><strong>Number of Guests:</strong> <%= @booking.num_guests %></p>
+          </div>
+        </div>
+        <div class="">
+          <h2>Payment</h2>
+          <div class="card-form p-3 border rounded-2">
+            <%= render 'payment_form' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-section col-5">
+      <div class="d-flex flex-column">
+        <div class="">
+          <h2>Booking Fee</h2>
+          <div class="summary p-3 border rounded-2">
+            <p><%= (@booking.end_date - @booking.start_date).to_i%> Nights x <%= @booking.flat.price %> = $<%= ((@booking.end_date - @booking.start_date).to_i)* @booking.flat.price %></p>
+            <p>Service Fee: 0</p>
+            <p><strong>Total Due: </strong>$<%= ((@booking.end_date - @booking.start_date).to_i)* @booking.flat.price %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[show]
+  before_action :set_booking, only: %i[show payment]
 
   def new
     authorize @booking
@@ -21,6 +21,13 @@ class BookingsController < ApplicationController
 
   def show
     authorize @booking
+  end
+
+  def payment
+    authorize @booking
+    @payment = @booking.payment_received
+    @booking_attr_as_array = []
+    @booking_attr_as_array << @booking.attributes
   end
 
   private

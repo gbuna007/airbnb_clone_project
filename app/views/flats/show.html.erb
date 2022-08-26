@@ -23,7 +23,6 @@
       <div class="border-end m-0 px-3">
         <h2>Info</h2>
         <ul>
-          <li>Address: <%= @flat.location %></li>
           <li>Location: <%= @flat.location %></li>
           <li>Price: $<%= @flat.price %></li>
           <li>Number of Occupants: <%= @flat.num_occupants %></li>
@@ -44,39 +43,30 @@
     </div>
   </div>
 
-  <h1>BOOKING SECTION</h1>
+  <h1 class="mt-4 mb-3">BOOK THIS FLAT:</h1>
   <div class="row booking-calendar">
-    <div class="col-5">
+    <div class="col-5 pt-2 me-3">
       <div class="this-month">
-        <%= month_calendar do |date| %>
-          <%= date %>
+        <%= month_calendar(events: @bookings_this_month, attribute: :start_date, end_attribute: :end_date) do |date, bookings| %>
+          <%= date.day %>
+          <% bookings.each do |booking| %>
+            <div class="booking">
+              <p>N/A</p>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
-
-    <div class="col-5">
-      <div class="next-month">
-        <%= month_calendar do |date| %>
-          <%= date %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="col-2">
-      <%= simple_form_for ([@flat, @booking]) do |f| %>
-        <%= f.input :start_date %>
-        <%= f.input :end_date %>
-        <%= f.input :num_guests %>
-        <%= f.button :submit %>
-      <% end %>
+    <div class="col-4 pt-2 bg-danger bg-opacity-25">
+      <%= render "form_booking" %>
     </div>
   </div>
 
-</div>
+  <h1>MAP</h1>
+  <div style="width: 100%; height: 400px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 
-<h1>MAP</h1>
-<div style="width: 100%; height: 400px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
