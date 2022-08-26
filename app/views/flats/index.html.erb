@@ -3,8 +3,12 @@
   <div class="row row-cols-sm-12 row-cols-md-3 row-cols-xl-5 justify-content-center p-0">
     <% @flats.each do |flat| %>
       <div class ="card p-0 m-2">
-        <div>
-          <%= link_to cl_image_tag( flat.photo_url ? "fakeairbnb/#{flat.photo_url}" : "fakeairbnb/cld-sample-2.jpg", class:"img-fluid round-img p-0 m-0"), flat_path(flat) %>
+        <div class="img-container">
+          <% if flat.photos.first.nil? %>
+            <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img p-0 m-0 img-fluid"), user_flat_path(flat.user.id, flat.id) %>
+          <% else %>
+          <%= render "carousel" %>
+          <% end %>
         </div>
         <div class="card-body">
           <p class="card-title">><strong><%= link_to flat.name.truncate(25), flat_path(flat) %></strong></p>

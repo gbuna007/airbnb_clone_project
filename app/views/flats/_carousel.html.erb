@@ -1,0 +1,34 @@
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+   <% @flats.each do |flat| %>
+      <% flat.photos.each do |photo|%>
+        <% if photo == flat.photos.first %>
+          <div class="carousel-item active">
+          <%= link_to user_flat_path(flat.user.id, flat.id) do %>
+            <%= cl_image_tag photo.key, class:"img-fluid round-img p-0 m-0" %>
+          <% end %>
+          </div>
+        <%else%>
+          <div class="carousel-item">
+          <%= link_to user_flat_path(flat.user.id, flat.id) do %>
+            <%= cl_image_tag photo.key, class:"img-fluid round-img p-0 m-0" %>
+          <% end %>
+          </div>
+        <%end%>
+      <%end%>
+    <%end%>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

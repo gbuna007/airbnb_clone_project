@@ -29,4 +29,13 @@ Rails.application.routes.draw do
   resources :flats do
     resources :bookings, only: %i[new create]
   end
+
+  resources :bookings, only: %i[show]
+
+  resources :bookings do
+    member do
+      get :payment
+      patch :payment_update
+    end
+  end
 end

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mt-4">
     <div class="col-8">
-      <h1>Booking #<%= @booking.id %> Confirmed</h1>
+      <h1>Booking #<%= @booking.id %> <%= @booking.accepted && @booking.payment_received ? "Confirmed" : "Pending Confirmation" %></h1>
       <p>Edit Placeholder</p>
       <p>Cancel Placeholder</p>
     </div>

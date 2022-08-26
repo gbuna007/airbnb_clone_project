@@ -18,7 +18,7 @@ class FlatsController < ApplicationController
     @texts = %w[a b c d]
 
     @marker = @flat.attributes
-    @markers =[]
+    @markers = []
     @markers << @marker.select! { |key| key == "lat" || key == "lng" }
 
     this_month = params.fetch(:start_date, Date.today).to_date
@@ -72,7 +72,7 @@ class FlatsController < ApplicationController
   private
 
   def flat_params
-    params.require(:flat).permit(%i[name location price num_occupants num_bedroom num_bathroom amenitites avail_dates availability_status description])
+    params.require(:flat).permit([:name, :location, :price, :num_occupants, :description, :num_bedroom, :num_bathroom, :amenitites, :avail_dates, photos: []])
   end
 
   def set_flat

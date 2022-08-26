@@ -14,6 +14,10 @@ class BookingPolicy < ApplicationPolicy
     true
   end
 
+  def payment_update?
+    true
+  end
+
   def create?
     true
   end
