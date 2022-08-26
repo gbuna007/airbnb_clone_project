@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :bookings, only: %i[new create]
   end
 
-  resources :bookings, only: %i[show edit update]
+  resources :bookings, only: %i[show edit update destroy]
 
   resources :bookings do
     member do

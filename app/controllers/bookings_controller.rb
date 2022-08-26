@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[edit show payment payment_update update]
+  before_action :set_booking, only: %i[edit show payment payment_update update destroy]
 
   def index
     @bookings = policy_scope(Booking)
@@ -69,6 +69,12 @@ class BookingsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    authorize @booking
+    @booking.destroy
+    redirect_to root_path, status: :see_other
   end
 
   private

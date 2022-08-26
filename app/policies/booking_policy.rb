@@ -11,11 +11,11 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    record.user == user
   end
 
   def payment_update?
-    true
+    record.user == user
   end
 
   def create?
@@ -23,16 +23,19 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def payment?
-    true
+    record.user == user
   end
 
   def edit?
-    true
+    record.user == user
   end
 
   def update?
-    true
+    record.user == user
   end
 
+  def destroy?
+    record.user == user
+  end
 
 end
