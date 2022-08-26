@@ -13,12 +13,6 @@ Rails.application.routes.draw do
   # resources :bookings, only: %i[show]
 
   # RENTERS/HOSTS
-  # a renter can create a booking (confirmation page)
-  resources :bookings do
-    member do
-      get :payment
-    end
-  end
 
   # a renter can see the renter dashboard
   resources :users do
@@ -30,7 +24,7 @@ Rails.application.routes.draw do
     resources :bookings, only: %i[new create]
   end
 
-  resources :bookings, only: %i[show]
+  resources :bookings, only: %i[show edit update destroy]
 
   resources :bookings do
     member do
