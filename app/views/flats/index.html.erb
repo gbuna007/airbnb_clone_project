@@ -5,13 +5,13 @@
       <div class ="card p-0 m-2">
         <div class="img-container">
           <% if flat.photos.first.nil? %>
-            <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img p-0 m-0 img-fluid"), user_flat_path(flat.user.id, flat.id) %>
+            <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img p-0 m-0 img-fluid"), flat_path(flat) %>
           <% else %>
-          <%= render "carousel" %>
+            <%= render "carousel" %>
           <% end %>
         </div>
         <div class="card-body">
-          <p class="card-title">><strong><%= link_to flat.name.truncate(25), user_flat_path(flat.user.id, flat.id) %></strong></p>
+          <p class="card-title">><strong><%= link_to flat.name.truncate(25), flat_path(flat) %></strong></p>
           <div class="p-0 m-0 text-small">
             <p>Location: <%= flat.location %></p>
             <p>Price: $<%= flat.price %></p>
