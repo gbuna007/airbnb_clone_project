@@ -11,18 +11,18 @@
   background-color: whitesmoke;
   box-shadow: 0px -2px 1px 1px rgba(10,10,10,0.1);
 }
-.footer-links {
+.footer-left {
   display: flex;
   align-items: center;
 }
-.footer-links a {
+.footer-left a {
   color: black;
   opacity: 0.15;
   text-decoration: none;
   font-size: 24px;
   padding: 0px 10px;
 }
-.footer-links a:hover {
+.footer-left a:hover {
   opacity: 1;
 }
 .footer .fa-heart {
