@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[show payment]
+  before_action :set_booking, only: %i[show payment payment_update]
 
   def new
     authorize @booking
@@ -10,12 +10,17 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    authorize @booking
+
     @booking.user = current_user
     @flat = Flat.find_by_id(params[:flat_id])
     @booking.flat = @flat
-    authorize @booking
+
     if @booking.save
       redirect_to @booking, notice: "Booking created, please proceed with payment"
+    else
+
+      redirect_to user_flat_path(current_user, @flat), status: :unprocessable_entity, notice: "Please fill all required fields"
     end
   end
 
@@ -25,9 +30,13 @@ class BookingsController < ApplicationController
 
   def payment
     authorize @booking
-    @payment = @booking.payment_received
-    @booking_attr_as_array = []
-    @booking_attr_as_array << @booking.attributes
+  end
+
+  def payment_update
+    authorize @booking
+    @booking.update(payment_received: true)
+
+    redirect_to @booking
   end
 
   private
@@ -37,6 +46,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :num_guests, :flat_id)
+    params.require(:booking).permit(:start_date, :end_date, :num_guests, :flat_id, :payment_received)
   end
 end

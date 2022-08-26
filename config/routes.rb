@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :bookings do
     member do
       get :payment
+      patch :payment_update
     end
   end
 end
