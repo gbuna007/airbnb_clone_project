@@ -12,7 +12,7 @@
   <div class="container row m-2">
     <div class="flex-grow-1 col-12 col-md-6">
       <% if @flat.photos.first.nil? %>
-        <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img p-0 img-fluid"), user_flat_path(@flat.user.id, @flat.id) %>
+        <%= cl_image_tag( "goldgate.jpg", class:"round-img p-0 img-fluid") %>
       <% else %>
         <%= cl_image_tag(@flat.photos.first.key, class:"img-fluid") %>
       <% end %>
