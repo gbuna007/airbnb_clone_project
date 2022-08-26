@@ -25,4 +25,8 @@ class BookingPolicy < ApplicationPolicy
   def payment?
     true
   end
+
+  def edit?
+    true
+  end
 end
