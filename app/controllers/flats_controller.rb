@@ -4,18 +4,18 @@ class FlatsController < ApplicationController
 
   def index
     @flats = policy_scope(Flat)
-    @search = params[:name]
-    if @search.present?
-      @flats = Flat.where(name: @name)
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR location ILIKE :query"
+      @flats = Flat.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @flats = Flat.all
     end
   end
 
   def show
     authorize @flat
-
     @booking = Booking.new
     @booking.user = current_user
-    @texts = %w[a b c d]
 
     @marker = @flat.attributes
     @markers = []
@@ -65,8 +65,9 @@ class FlatsController < ApplicationController
   end
 
   def destroy
+    authorize @flat
     @flat.destroy
-    redirect_to root_path
+    redirect_to user_flats_path, status: :see_other
   end
 
   private

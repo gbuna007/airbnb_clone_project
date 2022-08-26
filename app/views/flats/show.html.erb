@@ -5,14 +5,14 @@
     <div>
      <% if policy(@flat).edit? %>
         <%= link_to "Edit Listing", edit_user_flat_path(current_user, @flat), class: "btn btn-outline-warning hoverable" %>
-        <%= link_to "Delete Listing", "#", class: "btn btn-outline-danger hoverable" %>
+        <%= link_to "Delete Listing", user_flat_path(@flat.user.id, @flat.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger hoverable" %>
       <% end %>
   </div>
   </div>
   <div class="container row m-2">
     <div class="flex-grow-1 col-12 col-md-6">
       <% if @flat.photos.first.nil? %>
-        <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img p-0 img-fluid"), user_flat_path(flat.user.id, flat.id) %>
+        <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img p-0 img-fluid"), user_flat_path(@flat.user.id, @flat.id) %>
       <% else %>
         <%= cl_image_tag(@flat.photos.first.key, class:"img-fluid") %>
       <% end %>
