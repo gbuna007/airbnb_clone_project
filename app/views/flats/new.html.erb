@@ -4,18 +4,18 @@
     <div class="container">
       <%= f.input :name %>
       <div class="d-flex">
-        <div class="col-xl-4">
-          <%= f.input :description %>
+        <div class="col-xl-4 m-1 border border-light border-4 rounded-3 p-2">
+          <%= f.input :description, style:"height: 300px" %>
         </div>
-        <div class="col-xl-4">
+        <div class="col-xl-4 m-1 border border-light border-4 rounded-3 p-2">
           <%= f.input :location %>
           <%= f.input :price %>
           <%= f.input :num_occupants %>
           <%= f.input :num_bedroom %>
           <%= f.input :num_bathroom %>
         </div>
-        <div class="col-xl-4">
-          amenities
+        <div class="col-xl-4 m-1 border border-light border-4 rounded-3 p-2">
+          <%= f.association :amenities, as: :check_boxes %>
         </div>
       </div>
     </div>

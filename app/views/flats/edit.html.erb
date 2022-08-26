@@ -1,21 +1,21 @@
 <div class = "container my-3">
   <%= simple_form_for [@user, @flat] do |f| %>
-    <h1>Edit listing</h1>
+    <h1>Update listing</h1>
     <div class="container">
       <%= f.input :name %>
       <div class="d-flex">
-        <div class="col-xl-4">
-          <%= f.input :description %>
+        <div class="col-xl-4 m-1 border border-light border-4 rounded-3 p-2">
+          <%= f.input :description, style:"height: 300px" %>
         </div>
-        <div class="col-xl-4">
+        <div class="col-xl-4 m-1 border border-light border-4 rounded-3 p-2">
           <%= f.input :location %>
           <%= f.input :price %>
           <%= f.input :num_occupants %>
           <%= f.input :num_bedroom %>
           <%= f.input :num_bathroom %>
         </div>
-        <div class="col-xl-4">
-          amenities
+        <div class="col-xl-4 m-1 border border-light border-4 rounded-3 p-2">
+          <%= f.association :amenities, as: :check_boxes %>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
       <div class="border border-solid row m-2 ">
         <div class="flex-grow-1 col-12 col-md-6">
           <% if @flat.photos.first.nil? %>
-            <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img p-0 img-fluid"), user_flat_path(@flat.user.id, @flat.id) %>
+            <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img p-0 img-fluid") %>
           <% else %>
             <%= cl_image_tag(@flat.photos.first.key, class:"img-fluid") %>
           <% end %>
@@ -46,7 +46,7 @@
         <p class="mb-0">© 2022 Fakebnb, Inc.</p>
       </div>
       <div class="footer-right d-flex">
-          <%= button_tag(type: 'submit', class: "btn btn bg-transparent text-danger") do %>
+          <%= button_tag(type: 'submit', class: "btn bg-transparent text-danger") do %>
             <i class="fa-solid fa-check"></i> Update
           <% end %>
       </div>
