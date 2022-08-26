@@ -1,5 +1,5 @@
 <div class = "container my-3">
-  <%= simple_form_for [@user, @flat] do |f| %>
+  <%= simple_form_for (@flat) do |f| %>
     <h1>Update listing</h1>
     <div class="container">
       <%= f.input :name %>
@@ -24,7 +24,7 @@
       <div class="border border-solid row m-2 ">
         <div class="flex-grow-1 col-12 col-md-6">
           <% if @flat.photos.first.nil? %>
-            <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img p-0 img-fluid") %>
+            <%= cl_image_tag( "goldgate.jpg", class:"round-img p-0 img-fluid") %>
           <% else %>
             <%= cl_image_tag(@flat.photos.first.key, class:"img-fluid") %>
           <% end %>

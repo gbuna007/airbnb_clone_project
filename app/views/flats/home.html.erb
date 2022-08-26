@@ -4,7 +4,7 @@
       <div class ="card p-0 m-2">
         <div class="img-container">
           <% if flat.photos.first.nil? %>
-            <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img p-0 m-0 img-fluid"), flat_path(flat) %>
+            <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img flat-img p-0 m-0"), flat_path(flat) %>
           <% else %>
             <%= render "carousel" %>
           <% end %>

@@ -4,24 +4,24 @@
     <h1>IMAGES</h1>
     <div>
      <% if policy(@flat).edit? %>
-        <%= link_to "Edit Listing", edit_user_flat_path(current_user, @flat), class: "btn btn-outline-white text-danger" %>
-        <%= link_to "Delete Listing", user_flat_path(@flat.user.id, @flat.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-white text-danger" %>
+        <%= link_to "Edit Listing", edit_flat_path(@flat), class: "btn btn-outline-white text-danger" %>
+        <%= link_to "Delete Listing", flat_path(@flat), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-white text-danger" %>
       <% end %>
   </div>
   </div>
   <div class="container row m-2">
-    <div class="flex-grow-1 col-12 col-md-6">
+    <div class="flex-grow-1 col-12 col-md-7">
       <% if @flat.photos.first.nil? %>
-        <%= cl_image_tag( "goldgate.jpg", class:"round-img p-0 img-fluid") %>
+        <%= cl_image_tag( "goldgate.jpg", class:"round-img") %>
       <% else %>
-        <%= cl_image_tag(@flat.photos.first.key, class:"img-fluid") %>
+        <%= cl_image_tag(@flat.photos.first.key, class:"round-img img-fluid") %>
       <% end %>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
       <div class="row">
         <% @flat.photos.each do |photo| %>
-        <div class="card col-6" >
-          <%= cl_image_tag photo.key, class: "img-card-show" %>
+        <div class="card col-6 mb-1" >
+          <%= cl_image_tag photo.key, class: "round-img flat-img p-0 m-0" %>
         </div>
         <% end %>
       </div>
