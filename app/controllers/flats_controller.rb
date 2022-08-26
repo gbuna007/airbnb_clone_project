@@ -12,13 +12,13 @@ class FlatsController < ApplicationController
 
   def show
     authorize @flat
+
     @booking = Booking.new
     @booking.user = current_user
     @texts = %w[a b c d]
 
-
     @marker = @flat.attributes
-    @markers =[]
+    @markers = []
     @markers << @marker.select! { |key| key == "lat" || key == "lng" }
 
     this_month = params.fetch(:start_date, Date.today).to_date

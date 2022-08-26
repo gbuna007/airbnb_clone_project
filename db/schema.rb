@@ -81,7 +81,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_052853) do
     t.integer "num_occupants"
     t.integer "num_bedroom"
     t.integer "num_bathroom"
-    t.string "amenities"
     t.date "avail_dates"
     t.boolean "availibility_status"
     t.string "photo_url"
