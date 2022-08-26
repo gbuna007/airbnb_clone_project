@@ -1,11 +1,10 @@
 <div class="container">
-  <h1 class="my-2">All Flats</h1>
   <div class="row row-cols-sm-12 row-cols-md-3 row-cols-xl-5 justify-content-center p-0">
     <% @flats.each do |flat| %>
       <div class ="card p-0 m-2">
         <div class="img-container">
           <% if flat.photos.first.nil? %>
-            <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img p-0 m-0 img-fluid"), user_flat_path(flat.user.id, flat.id) %>
+            <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img p-0 m-0 img-fluid"), flat_path(flat) %>
           <% else %>
           <%= render "carousel" %>
           <% end %>
@@ -22,4 +21,3 @@
     <% end %>
   </div>
 </div>
-<%= render "shared/footer" %>
