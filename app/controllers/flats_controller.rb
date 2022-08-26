@@ -43,9 +43,8 @@ class FlatsController < ApplicationController
   # a host can create a flat
   # /flats/new
   def new
-    @user = User.find(params[:user_id])
+    @user = current_user
     @flat = Flat.new
-
     authorize @flat
   end
 
@@ -55,7 +54,7 @@ class FlatsController < ApplicationController
     @flat.user = current_user
     authorize @flat
     if @flat.save
-      redirect_to user_flat_path(current_user, @flat)
+      redirect_to flat_path(@flat)
     else
       render :new, status: :unprocessable_entity
     end
@@ -73,9 +72,12 @@ class FlatsController < ApplicationController
   # /flats/:id
   def update
     @flat.update(flat_params)
+    @flat.user = current_user
+    # raise
     authorize @flat
+    @flat.save
     if @flat.save
-      redirect_to user_flat_path(current_user, @flat)
+      redirect_to flat_path(@flat)
     else
       render :new, status: :unprocessable_entity
     end
@@ -86,7 +88,7 @@ class FlatsController < ApplicationController
   def destroy
     authorize @flat
     @flat.destroy
-    redirect_to user_flats_path, status: :see_other
+    redirect_to root_path, status: :see_other
   end
 
   # a host can update/reject a booking
@@ -94,7 +96,7 @@ class FlatsController < ApplicationController
   private
 
   def flat_params
-    params.require(:flat).permit([:name, :location, :price, :num_occupants, :description, :num_bedroom, :num_bathroom, :amenitites, :avail_dates, photos: []])
+    params.require(:flat).permit( :name, :location, :price, :num_occupants, :description, :num_bedroom, :num_bathroom, :avail_dates, photos: [], amenity_ids: [])
   end
 
   def set_flat
