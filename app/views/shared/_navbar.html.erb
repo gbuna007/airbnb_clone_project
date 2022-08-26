@@ -4,15 +4,20 @@
       <%= cl_image_tag "bnblogo.png" %>
     <% end %>
 
-    <%= form_with url: root_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Find a place!"
-      %>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-    <% end %>
+      <div class="search-form-control form-group">
+        <%= form_with url: root_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control bar-mid-width",
+            id: "search_query",
+            placeholder: "Find a place!"
+          %>
 
+          <%= button_tag type:'submit', class:"btn btn-flat" do %>
+            <i class="fa-solid fa-magnifying-glass"></i> Search!
+          <% end %>
+        <% end %>
+      </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
