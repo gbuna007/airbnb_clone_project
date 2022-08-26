@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[edit show payment payment_update]
+  before_action :set_booking, only: %i[edit show payment payment_update update]
 
   def index
     @bookings = policy_scope(Booking)
@@ -57,6 +57,18 @@ class BookingsController < ApplicationController
     @bookings_this_month = Booking.where(start_date: this_month.beginning_of_month.beginning_of_week..this_month.end_of_month.end_of_week).where(flat_id: @flat).where(payment_received: true).where(accepted: true)
 
     @bookings_next_month = Booking.where(start_date: next_month.beginning_of_month.beginning_of_week..next_month.end_of_month.end_of_week).where(flat_id: @flat).where(payment_received: true).where(accepted: true)
+  end
+
+  def update
+    @booking.update(booking_params)
+
+    authorize @booking
+
+    if @booking.save
+      redirect_to @booking
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
