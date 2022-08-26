@@ -4,8 +4,10 @@
     <h1>IMAGES</h1>
     <div>
      <% if policy(@flat).edit? %>
+
         <%= link_to "Edit Listing", edit_flat_path(current_user, @flat), class: "btn btn-outline-warning hoverable" %>
-        <%= link_to "Delete Listing", "#", class: "btn btn-outline-danger hoverable" %>
+        <%= link_to "Delete Listing", "#", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger hoverable" %>
+
       <% end %>
   </div>
   </div>
@@ -58,16 +60,17 @@
   </div>
 
   <h1 class="mt-4 mb-3">BOOK THIS FLAT:</h1>
-  <div class="row booking-calendar">
+  <div class="row booking-calendar" data-controller="calendar" >
     <div class="col-5 pt-2 me-3">
       <div class="this-month">
         <%= month_calendar(events: @bookings_this_month, attribute: :start_date, end_attribute: :end_date) do |date, bookings| %>
-          <%= date.day %>
-          <% bookings.each do |booking| %>
-            <div class="booking">
-              <p>N/A</p>
-            </div>
-          <% end %>
+          <%# <%= tag.day (data:{ action: "click->calendar#select_date" }) %>
+          <div class="<%= date %>">
+            <%= date.day %>
+            <% bookings.each do |booking| %>
+                <p class="booked">N/A</p>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
