@@ -4,7 +4,7 @@
     <% @flats.each do |flat| %>
       <div class ="card p-0 m-2">
         <div>
-          <%= link_to cl_image_tag( flat.photo_url ? "fakeairbnb/#{flat.photo_url}" : "fakeairbnb/cld-sample-2.jpg", class:"img-fluid round-img p-0 m-0"), user_flat_path(flat.user.id, flat.id) %>
+          <%= link_to cl_image_tag( flat.photo_url ? "#{flat.photo_url}" : "cld-sample-2.jpg", class:"img-fluid round-img p-0 m-0"), user_flat_path(flat.user.id, flat.id) %>
         </div>
         <div class="card-body">
           <p class="card-title">><strong><%= link_to flat.name.truncate(25), user_flat_path(flat.user.id, flat.id) %></strong></p>
