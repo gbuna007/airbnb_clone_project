@@ -10,12 +10,17 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    authorize @booking
+
     @booking.user = current_user
     @flat = Flat.find_by_id(params[:flat_id])
     @booking.flat = @flat
-    authorize @booking
+
     if @booking.save
       redirect_to @booking, notice: "Booking created, please proceed with payment"
+    else
+
+      redirect_to user_flat_path(current_user, @flat), status: :unprocessable_entity, notice: "Please fill all required fields"
     end
   end
 
