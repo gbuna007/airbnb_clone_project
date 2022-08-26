@@ -20,6 +20,11 @@ class FlatsController < ApplicationController
   def index
     @flats = policy_scope(Flat)
     authorize @flats
+    @bookings = []
+    @flats.each do |flat|
+      @bookings << flat.bookings.load_target
+    end
+    @bookings.flatten!
   end
 
   # a user can view a flat
