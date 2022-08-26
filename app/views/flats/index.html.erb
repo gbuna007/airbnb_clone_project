@@ -13,9 +13,9 @@
         <div class="card-body">
           <p class="card-title">><strong><%= link_to flat.name.truncate(25), flat_path(flat) %></strong></p>
           <div class="p-0 m-0 text-small">
-            <p>Location: <%= flat.location %></p>
-            <p>Price: $<%= flat.price %></p>
-            <p>Number of Occupants: <%= flat.num_occupants %></p>
+            <p class="mb-1">Location: <%= flat.location.truncate(20) %></p>
+            <p class="mb-1">Price: $<%= flat.price %></p>
+            <p class="mb-1">Number of Occupants: <%= flat.num_occupants %></p>
           </div>
         </div>
       </div>

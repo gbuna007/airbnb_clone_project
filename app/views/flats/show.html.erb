@@ -4,8 +4,8 @@
     <h1>IMAGES</h1>
     <div>
      <% if policy(@flat).edit? %>
-        <%= link_to "Edit Listing", edit_user_flat_path(current_user, @flat), class: "btn btn-outline-warning hoverable" %>
-        <%= link_to "Delete Listing", user_flat_path(@flat.user.id, @flat.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger hoverable" %>
+        <%= link_to "Edit Listing", edit_user_flat_path(current_user, @flat), class: "btn btn-outline-white text-danger" %>
+        <%= link_to "Delete Listing", user_flat_path(@flat.user.id, @flat.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-white text-danger" %>
       <% end %>
   </div>
   </div>
@@ -17,11 +17,11 @@
         <%= cl_image_tag(@flat.photos.first.key, class:"img-fluid") %>
       <% end %>
     </div>
-    <div class="col-6 col-md-6">
-      <div class="row py-5">
+    <div class="col-md-6">
+      <div class="row">
         <% @flat.photos.each do |photo| %>
-        <div class="card m-2 col-5">
-          <%= cl_image_tag photo.key, class:"img-fluid" %>
+        <div class="card col-6" >
+          <%= cl_image_tag photo.key, class: "img-card-show" %>
         </div>
         <% end %>
       </div>

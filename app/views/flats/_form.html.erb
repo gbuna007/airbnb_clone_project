@@ -1,11 +1,23 @@
 <%= simple_form_for [@user, @flat] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :location %>
-  <%= f.input :price %>
-  <%= f.input :num_occupants %>
-  <%= f.input :description %>
-  <%= f.input :num_bedroom %>
-  <%= f.input :num_bathroom %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit %>
-  <% end %>
+  <div>
+    <div>
+      <%= f.input :name %>
+      <%= f.input :description %>
+    </div>
+    <div>
+      <%= f.input :location %>
+      <%= f.input :price %>
+      <%= f.input :num_occupants %>
+      <%= f.input :num_bedroom %>
+      <%= f.input :num_bathroom %>
+    </div>
+    <div>
+      amenities
+    </div>
+  </div>
+  <div>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    display images
+  </div>
+<% end %>
