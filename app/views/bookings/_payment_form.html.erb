@@ -7,23 +7,24 @@
   </select>
   <div class="mb-3">
     <label class="form-label">Cardholder Name</label>
-    <input type="email" class="form-control">
+    <input class="form-control">
   </div>
   <div class="mb-3">
     <label class="form-label">Card Number</label>
-    <input type="email" class="form-control">
+    <input class="form-control">
   </div>
   <div class="mb-3">
     <label class="form-label">Expiration Date</label>
-    <input type="email" class="form-control">
+    <input class="form-control">
   </div>
   <div class="mb-3">
     <label class="form-label">CVV</label>
-    <input type="email" class="form-control">
+    <input class="form-control">
   </div>
   <div class="mb-3">
     <label class="form-label">Postal Code</label>
-    <input type="email" class="form-control">
+    <input class="form-control">
   </div>
-  <button type="submit" data-controller="payment" data-action="click->payment#paying" data-payment-booking-value="<%= @booking_attr_as_array.to_json %>" class="btn btn-primary">Pay</button>
 </form>
+
+<%= button_to 'Pay', payment_update_booking_path(@booking), :method => :patch %>

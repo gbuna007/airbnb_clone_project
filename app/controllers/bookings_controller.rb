@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[show payment]
+  before_action :set_booking, only: %i[show payment payment_update]
 
   def new
     authorize @booking
@@ -25,9 +25,13 @@ class BookingsController < ApplicationController
 
   def payment
     authorize @booking
-    @payment = @booking.payment_received
-    @booking_attr_as_array = []
-    @booking_attr_as_array << @booking.attributes
+  end
+
+  def payment_update
+    authorize @booking
+    @booking.update(payment_received: true)
+
+    redirect_to @booking
   end
 
   private
@@ -37,6 +41,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :num_guests, :flat_id)
+    params.require(:booking).permit(:start_date, :end_date, :num_guests, :flat_id, :payment_received)
   end
 end
