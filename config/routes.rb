@@ -4,16 +4,6 @@ Rails.application.routes.draw do
   # home/landing page (a user can see all flats) DONE
   root to: "flats#home"
 
-  # a host can see host dashboard (index)
-  # a host can create a flat (new, create)
-  # a host can see a flat (show)
-  # a host can edit a flat (edit, update)
-  # a host can delete a flat (delete)
-  # a host can accept/reject a booking
-  resources :flats do
-    resources :bookings, only: [:new, :create]
-  end
-
   # a renter can see renter dashboard (index)
   # a renter can create a booking (new, create)
   # a renter can see a booking (show)
@@ -25,4 +15,15 @@ Rails.application.routes.draw do
       patch :payment_update # a renter can pay (payment page)
     end
   end
+
+  # a host can see host dashboard (index)
+  # a host can create a flat (new, create)
+  # a host can see a flat (show)
+  # a host can edit a flat (edit, update)
+  # a host can delete a flat (delete)
+  # a host can accept/reject a booking
+  resources :flats do
+    resources :bookings, only: [:new, :create]
+  end
+
 end

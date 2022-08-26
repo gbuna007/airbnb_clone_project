@@ -6,6 +6,7 @@ class FlatsController < ApplicationController
   # /
   def home
     @flats = policy_scope(Flat)
+
     if params[:query].present?
       sql_query = "name ILIKE :query OR location ILIKE :query"
       @flats = Flat.where(sql_query, query: "%#{params[:query]}%")
@@ -25,10 +26,12 @@ class FlatsController < ApplicationController
     @booking = Booking.new
     @booking.user = current_user
 
+    # for map
     @marker = @flat.attributes
     @markers = []
     @markers << @marker.select! { |key| key == "lat" || key == "lng" }
 
+    # for calendar
     this_month = params.fetch(:start_date, Date.today).to_date
     next_month = params.fetch(:start_date, Date.today + 1.month).to_date
 
