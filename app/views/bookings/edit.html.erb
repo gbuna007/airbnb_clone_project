@@ -1,0 +1,36 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col d-flex justify-content-between align-items-center">
+      <h1>Change Booking #<%= @booking.id %></h1>
+      <%= link_to "Back to Booking Page", @booking, class: "btn  btn-outline-primary h-75" %>
+    </div>
+  </div>
+
+  <div class="row current-booking mt-3">
+    <h2>Current Booking Details</h2>
+    <p><strong>Flat Name:</strong> <%= @booking.flat.name %></p>
+    <p><strong>Address:</strong> <%= @booking.flat.location %></p>
+    <p><strong>Check In Date:</strong> <%= @booking.start_date %></p>
+    <p><strong>Check Out Date:</strong> <%= @booking.end_date %></p>
+    <p><strong>Number of Guests:</strong> <%= @booking.num_guests %></p>
+  </div>
+  <div class="row mt-3" data-controller="calendar">
+    <h2>Change Booking <%= @booking.id %></h2>
+    <div class="col-5 mt-3 me-4">
+      <%= month_calendar(events: @bookings_this_month, attribute: :start_date, end_attribute: :end_date) do |date, bookings| %>
+          <%# <%= tag.day (data:{ action: "click->calendar#select_date" }) %>
+          <div class="<%= date %>">
+            <%= date.day %>
+            <% bookings.each do |booking| %>
+                <p class="booked">N/A</p>
+            <% end %>
+          </div>
+        <% end %>
+    </div>
+    <div class="col-4 mt-3">
+
+
+      <%= render "edit_booking" %>
+    </div>
+  </div>
+</div>

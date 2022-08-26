@@ -1,0 +1,7 @@
+<%= simple_form_for ([@booking]) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :start_date, as: :string, input_html: {data: {"calendar-target": "start_date" }, value: ""} %>
+  <%= f.input :end_date, as: :string, input_html: {data: {"calendar-target": "end_date" }, value: ""} %>
+  <%= f.input :num_guests, collection: 1..@flat.num_occupants %>
+  <%= f.button :submit %>
+<% end %>
