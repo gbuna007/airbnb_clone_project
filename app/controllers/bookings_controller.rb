@@ -5,8 +5,7 @@ class BookingsController < ApplicationController
   # /bookings
   def index
     @bookings = policy_scope(Booking)
-    @user = current_user
-    # @bookings = Booking.all
+    authorize @bookings
   end
 
   # a renter can create a booking (booking confirmation page)

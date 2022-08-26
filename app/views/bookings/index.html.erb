@@ -1,13 +1,13 @@
 <div class="container mt-3">
   <div class="navbar">
-    <h1>Welcome <%= @user.first_name %>!</h1>
-    <%= link_to "Switch to Host Dashboard", new_booking_path(@user), class: "btn btn-outline-secondary" %>
+    <h1>Welcome <%= current_user.first_name %>!</h1>
+    <%= link_to "Switch to Host Dashboard", new_flat_path(current_user), class: "btn btn-outline-secondary" %>
   </div>
 
   <div class="border mb-3 p-3 bg-light">
     <div class="mb-3 navbar">
       <h2 class="m-0">Upcoming Bookings</h2>
-      <%= link_to "Add New Booking", new_booking_path(@user), class: "btn btn-outline-secondary" %>
+      <%= link_to "Add New Booking", new_flat_booking_path(current_user), class: "btn btn-outline-secondary" %>
     </div>
 
     <div class="bg-white">

@@ -7,7 +7,7 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def index?
-    record.user == user
+    record.first.user == user
   end
 
   def show?
