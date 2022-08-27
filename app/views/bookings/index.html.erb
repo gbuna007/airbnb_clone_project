@@ -1,27 +1,40 @@
 <div class="container mt-3">
   <div class="navbar">
-    <h1>Welcome <%= @user.first_name %>!</h1>
-    <%= link_to "Switch to Host Dashboard", new_booking_path(@user), class: "btn btn-outline-secondary" %>
+    <h1>Guest Dashboard</h1>
+  </div>
+  <div class="navbar">
+    <h2>Welcome <%= current_user.first_name %>!</h2>
+    <%= link_to "Switch to Host Dashboard", flats_path(current_user), class: "btn btn-outline-secondary" %>
   </div>
 
   <div class="border mb-3 p-3 bg-light">
     <div class="mb-3 navbar">
-      <h2 class="m-0">Upcoming Bookings</h2>
-      <%= link_to "Add New Booking", new_booking_path(@user), class: "btn btn-outline-secondary" %>
+      <h3 class="m-0">Upcoming Bookings</h3>
+      <%= link_to "Discover Flats", root_path, class: "btn btn-outline-secondary" %>
     </div>
 
     <div class="bg-white">
-      <% @bookings.each do |booking| %>
+      <% @bookings_new.each do |booking| %>
         <div class="notification">
           <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
           <div class="notification-content">
-            <p><small><%= booking.start_date %></small></p>
+            <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
             <p><%= booking.flat.name %></p>
           </div>
-
+          <div class="booking-status">
+            <% if booking.accepted.nil? %>
+              <%= "Pending Host's Acceptance" %>
+            <% else %>
+              <% if booking.accepted %>
+                <%= "Booking Accepted" %>
+              <% else %>
+                <%= "Booking Rejected" %>
+              <% end %>
+            <% end %>
+          </div>
           <div class="notification-actions">
-            <a href="#">Edit <i class="fas fa-pencil-alt"></i></a>
-            <a href="#">Delete <i class="far fa-trash-alt"></i></a>
+             <%= link_to 'Edit <i class="fas fa-pencil-alt"></i>'.html_safe, edit_booking_path(booking), class: "text-decoration-none"  %>
+            <%= link_to 'Delete <i class="far fa-trash-alt"></i>'.html_safe, booking, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger hoverable", class: "text-decoration-none"  %>
           </div>
         </div>
       <% end %>
@@ -30,15 +43,15 @@
 
   <div class="border mb-3 p-3 bg-light">
     <div class="mb-3 navbar">
-      <h2 class="m-0">Past Bookings</h2>
+      <h3 class="m-0">Past Bookings</h3>
     </div>
 
     <div class="bg-white">
-      <% @bookings.each do |booking| %>
+      <% @bookings_old.each do |booking| %>
         <div class="notification">
           <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
           <div class="notification-content">
-            <p><small><%= booking.end_date %></small></p>
+            <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
             <p><%= booking.flat.name %></p>
           </div>
 

@@ -30,9 +30,10 @@
           <li class="nav-item dropdown">
             <%= current_user.photo.key.nil? ? (image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) : (cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Go to Renter Dashboard", bookings_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Go to Host Dashboard", "#", class: "dropdown-item" %>
-              <%= link_to "Create New Listing", new_flat_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Go to Guest Dashboard", bookings_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Go to Host Dashboard", flats_path(current_user), class: "dropdown-item border-bottom" %>
+              <%= link_to "Be a host! List your Flat", new_flat_path(current_user), class: "dropdown-item fst-italic fw-semibold" %>
+              <%= link_to "Manage Account",  edit_user_registration_path(current_user), class: "dropdown-item border-bottom" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item"  %>
             </div>
           </li>

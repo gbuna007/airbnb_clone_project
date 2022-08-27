@@ -1,0 +1,95 @@
+<div class="container mt-3">
+  <div class="navbar">
+    <h1>Host Dashboard</h1>
+  </div>
+  <div class="navbar">
+    <h2>Welcome <%= current_user.first_name %>!</h2>
+    <%= link_to "Switch to Guest Dashboard", bookings_path(current_user), class: "btn btn-outline-secondary" %>
+  </div>
+
+  <div class="border mb-3 p-3 bg-light">
+    <div class="mb-3 navbar">
+      <h3 class="m-0">Your Flats</h3>
+      <%= link_to "Add New Flat", new_flat_path(current_user), class: "btn btn-outline-secondary" %>
+    </div>
+
+    <div class="bg-white">
+      <% @flats.each do |flat| %>
+        <div class="notification">
+          <%= cl_image_tag( "goldgate.jpg", class:"avatar-large") %>
+          <%# <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> %>
+          <div class="notification-content">
+            <p><%= flat.name %></p>
+          </div>
+
+          <div class="notification-actions">
+            <%= link_to 'Edit <i class="fas fa-pencil-alt"></i>'.html_safe, edit_flat_path(flat), class: "text-decoration-none"  %>
+            <%= link_to 'Delete <i class="far fa-trash-alt"></i>'.html_safe, flat, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger hoverable", class: "text-decoration-none"  %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="border mb-3 p-3 bg-light">
+    <div class="mb-3 navbar">
+      <h2 class="m-0">Upcoming Bookings</h2>
+    </div>
+
+    <div class="bg-white">
+      <% @bookings_new.each do |booking| %>
+        <div class="notification">
+          <%= booking.user.photo.key.nil? ? (image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) : (cl_image_tag booking.user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+          <div class="notification-content">
+            <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
+            <p><%= booking.flat.name %></p>
+            <p><%= booking.user.first_name %> <%= booking.user.last_name %></p>
+            <p>Placeholder for guest's rating</p>
+          </div>
+          <div class="acceptance-status me-3">
+            <p>
+              <% if booking.accepted.nil? %>
+                <%= "Pending Host's Acceptance" %>
+              <% else %>
+                <% if booking.accepted %>
+                  <%= "Booking Accepted" %>
+                <% else %>
+                  <%= "Booking Rejected" %>
+                <% end %>
+              <% end %>
+            </p>
+          </div>
+          <div class="payment-status me-3">
+            <p><%= booking.payment_received ? "Paid" : "Payment Pending" %></p>
+          </div>
+          <div class="notification-actions">
+            <%= link_to 'Accept <i class="fas fa-pencil-alt"></i>'.html_safe, accept_booking_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: "Accept this booking?"}, class: "text-decoration-none" %>
+            <%= link_to 'Reject <i class="far fa-trash-alt"></i>'.html_safe, reject_booking_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: "Reject this booking?"}, class: "text-decoration-none" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="border mb-3 p-3 bg-light">
+    <div class="mb-3 navbar">
+      <h3 class="m-0">Past Bookings</h3>
+    </div>
+
+    <div class="bg-white">
+      <% @bookings_old.each do |booking| %>
+        <div class="notification">
+          <%= booking.user.photo.key.nil? ? (image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) : (cl_image_tag booking.user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+          <div class="notification-content">
+            <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
+            <p><%= booking.flat.name %></p>
+          </div>
+
+          <div class="notification-actions">
+            <a href="#">See Reviews <i class="fa-solid fa-star"></i></a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

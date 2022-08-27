@@ -1,12 +1,14 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[edit show payment payment_update update destroy]
+  before_action :set_booking, only: %i[edit show payment payment_update update destroy accept_booking reject_booking]
 
   # a renter can view  renter dashboard
   # /bookings
   def index
     @bookings = policy_scope(Booking)
-    @user = current_user
-    # @bookings = Booking.all
+    authorize @bookings
+
+    @bookings_new = @bookings.select { |booking| booking.end_date >= Date.today }
+    @bookings_old = @bookings.select { |booking| booking.end_date < Date.today }
   end
 
   # a renter can create a booking (booking confirmation page)
@@ -34,10 +36,10 @@ class BookingsController < ApplicationController
       if @booking.save
         redirect_to @booking, notice: "Booking created, please proceed with payment"
       else
-        redirect_to user_flat_path(current_user, @flat), status: :unprocessable_entity, notice: "Please fill all required fields"
+        redirect_to flat_path(@flat), status: :unprocessable_entity, notice: "Please fill all required fields"
       end
     else
-      redirect_to new_user_session, status: :see_other
+      redirect_to new_user_session_path
     end
   end
 
@@ -87,6 +89,18 @@ class BookingsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def accept_booking
+    authorize @booking
+
+    @booking.update(accepted: true)
+  end
+
+  def reject_booking
+    authorize @booking
+
+    @booking.update(accepted: false)
   end
 
   # a renter can delete a booking

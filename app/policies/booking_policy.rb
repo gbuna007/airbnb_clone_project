@@ -7,10 +7,22 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def index?
-    record.user == user
+    record.empty? ? true : record.first.user == user
   end
 
   def show?
+    record.user == user
+  end
+
+  def accept_booking?
+    record.flat.user == user
+  end
+
+  def reject_booking?
+    record.flat.user == user
+  end
+
+  def edit?
     record.user == user
   end
 

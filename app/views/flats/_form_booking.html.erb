@@ -1,3 +1,4 @@
+<h5> Select start date and end date by clicking on the calendar</h5>
 <%= simple_form_for ([@flat, @booking]) do |f| %>
   <%= f.error_notification %>
   <%= f.input :start_date, as: :string, input_html: {data: {"calendar-target": "start_date" }} %>

@@ -1,0 +1,10 @@
+<%= turbo_frame_tag 'calendar' do %>
+  <%= month_calendar(events: @bookings, attribute: :start_date, end_attribute: :end_date, previous_link: bookings_ajax_previous_link, next_link: bookings_ajax_next_link) do |date, bookings| %>
+    <div class="<%= date %>">
+      <%= date.day %>
+      <% bookings.each do |booking| %>
+          <p class="booked">N/A</p>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

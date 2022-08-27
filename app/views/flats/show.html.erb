@@ -27,7 +27,7 @@
       </div>
     </div>
   </div>
-  <h1>DETAILS</h1>
+  <h1 class="mt-4">DETAILS</h1>
   <div class="container border rounded-3 shadow-sm py-4 px-5 bg-light">
     <h1 class="d-flex justify-content-center"><%= @flat.name %></h1>
 
@@ -60,20 +60,19 @@
   <h1 class="mt-4 mb-3">BOOK THIS FLAT:</h1>
   <div class="row booking-calendar" data-controller="calendar" >
     <div class="col-5 pt-2 me-3">
-      <div class="this-month">
-        <%= month_calendar(events: @bookings_this_month, attribute: :start_date, end_attribute: :end_date) do |date, bookings| %>
-          <%# <%= tag.day (data:{ action: "click->calendar#select_date" }) %>
-          <div class="<%= date %>">
-            <%= date.day %>
-            <% bookings.each do |booking| %>
-                <p class="booked">N/A</p>
-            <% end %>
-          </div>
-        <% end %>
+      <div id="events_calendar">
+        <%= render "calendar", locals: {events: @bookings} %>
       </div>
     </div>
     <div class="col-4 pt-2 bg-danger bg-opacity-25">
-      <%= render "form_booking" %>
+      <% if user_signed_in? %>
+        <%= render "form_booking" %>
+      <% else %>
+        <div class="message">
+          <p>Please login in to book this Flat</p>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-secondary-outline" %>
+        </div>
+      <% end %>
     </div>
   </div>
 

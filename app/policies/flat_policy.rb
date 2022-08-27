@@ -2,8 +2,12 @@ class FlatPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.all # users can see all flats
+      scope.where(user: user)
     end
+  end
+
+  def index?
+    record.empty? ? true : record.first.user == user
   end
 
   def home?
