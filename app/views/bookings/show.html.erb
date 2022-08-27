@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mt-4">
     <div class="col-12 d-flex">
-      <h1>Booking #<%= @booking.id %> <%= @booking.accepted && @booking.payment_received ? "Confirmed" : "Pending Confirmation" %></h1>
+      <h1>Booking #<%= @booking.id %> <%= @booking.accepted && @booking.payment_received ? "Confirmed" : "Not Confirmed" %></h1>
     </div>
   </div>
   <div class="row">
@@ -24,7 +24,17 @@
       <p><strong>Number of Guests: </strong><%= @booking.num_guests %></p>
       <br>
       <p><strong>Payment Status: </strong><%= @booking.payment_received.nil? ? "Payment Pending" : "Payment Received" %></p>
-      <p><strong>Host Acceptance Status: </strong><%= @booking.accepted.nil? ? "Pending Host's Accept" : "Booking Accepted" %></p>
+      <p><strong>Host Acceptance Status: </strong>
+        <% if @booking.accepted.nil? %>
+          <%= "Pending Host's Acceptance" %>
+        <% else %>
+          <% if @booking.accepted %>
+            <%= "Booking Accepted" %>
+          <% else %>
+            <%= "Booking Rejected" %>
+          <% end %>
+        <% end %>
+      </p>
     </div>
     <div class="col-3">
       <h2>Payment</h2>

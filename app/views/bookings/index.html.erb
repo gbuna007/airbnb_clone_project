@@ -21,7 +21,17 @@
             <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
             <p><%= booking.flat.name %></p>
           </div>
-
+          <div class="booking-status">
+            <% if booking.accepted.nil? %>
+              <%= "Pending Host's Acceptance" %>
+            <% else %>
+              <% if booking.accepted %>
+                <%= "Booking Accepted" %>
+              <% else %>
+                <%= "Booking Rejected" %>
+              <% end %>
+            <% end %>
+          </div>
           <div class="notification-actions">
              <%= link_to 'Edit <i class="fas fa-pencil-alt"></i>'.html_safe, edit_booking_path(booking), class: "text-decoration-none"  %>
             <%= link_to 'Delete <i class="far fa-trash-alt"></i>'.html_safe, booking, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger hoverable", class: "text-decoration-none"  %>

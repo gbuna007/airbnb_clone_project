@@ -47,14 +47,23 @@
             <p>Placeholder for guest's rating</p>
           </div>
           <div class="acceptance-status me-3">
-            <p><%= booking.accepted ? "Accepted" : "Pending Host Acceptance"  %></p>
+            <p>
+              <% if booking.accepted.nil? %>
+                <%= "Pending Host's Acceptance" %>
+              <% else %>
+                <% if booking.accepted %>
+                  <%= "Booking Accepted" %>
+                <% else %>
+                  <%= "Booking Rejected" %>
+                <% end %>
+              <% end %>
+            </p>
           </div>
           <div class="payment-status me-3">
             <p><%= booking.payment_received ? "Paid" : "Payment Pending" %></p>
           </div>
           <div class="notification-actions">
             <%= link_to 'Accept <i class="fas fa-pencil-alt"></i>'.html_safe, accept_booking_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: "Accept this booking?"}, class: "text-decoration-none" %>
-            <a href="#">Accept <i class="fas fa-pencil-alt"></i></a>
             <a href="#">Reject <i class="far fa-trash-alt"></i></a>
           </div>
         </div>
