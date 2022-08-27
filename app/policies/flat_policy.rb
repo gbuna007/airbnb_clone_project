@@ -7,7 +7,7 @@ class FlatPolicy < ApplicationPolicy
   end
 
   def index?
-    record.first.user == user
+    record.empty? ? true : record.first.user == user
   end
 
   def home?
