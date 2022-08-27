@@ -6,6 +6,9 @@ class BookingsController < ApplicationController
   def index
     @bookings = policy_scope(Booking)
     authorize @bookings
+
+    @bookings_new = @bookings.select { |booking| booking.end_date >= Date.today }
+    @bookings_old = @bookings.select { |booking| booking.end_date < Date.today }
   end
 
   # a renter can create a booking (booking confirmation page)
