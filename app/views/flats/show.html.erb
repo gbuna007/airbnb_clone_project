@@ -27,7 +27,7 @@
       </div>
     </div>
   </div>
-  <h1>DETAILS</h1>
+  <h1 class="mt-4">DETAILS</h1>
   <div class="container border rounded-3 shadow-sm py-4 px-5 bg-light">
     <h1 class="d-flex justify-content-center"><%= @flat.name %></h1>
 
@@ -65,7 +65,14 @@
       </div>
     </div>
     <div class="col-4 pt-2 bg-danger bg-opacity-25">
-      <%= render "form_booking" %>
+      <% if user_signed_in? %>
+        <%= render "form_booking" %>
+      <% else %>
+        <div class="message">
+          <p>Please login in to book this Flat</p>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-secondary-outline" %>
+        </div>
+      <% end %>
     </div>
   </div>
 

@@ -36,10 +36,10 @@ class BookingsController < ApplicationController
       if @booking.save
         redirect_to @booking, notice: "Booking created, please proceed with payment"
       else
-        redirect_to user_flat_path(current_user, @flat), status: :unprocessable_entity, notice: "Please fill all required fields"
+        redirect_to flat_path(@flat), status: :unprocessable_entity, notice: "Please fill all required fields"
       end
     else
-      redirect_to new_user_session, status: :see_other
+      redirect_to new_user_session_path
     end
   end
 
