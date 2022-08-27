@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[edit show payment payment_update update destroy accept_booking]
+  before_action :set_booking, only: %i[edit show payment payment_update update destroy accept_booking reject_booking]
 
   # a renter can view  renter dashboard
   # /bookings
@@ -95,6 +95,12 @@ class BookingsController < ApplicationController
     authorize @booking
 
     @booking.update(accepted: true)
+  end
+
+  def reject_booking
+    authorize @booking
+
+    @booking.update(accepted: false)
   end
 
   # a renter can delete a booking

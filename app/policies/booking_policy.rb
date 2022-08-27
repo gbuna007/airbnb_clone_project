@@ -18,6 +18,10 @@ class BookingPolicy < ApplicationPolicy
     record.flat.user == user
   end
 
+  def reject_booking?
+    record.flat.user == user
+  end
+
   def edit?
     record.user == user
   end

@@ -64,7 +64,7 @@
           </div>
           <div class="notification-actions">
             <%= link_to 'Accept <i class="fas fa-pencil-alt"></i>'.html_safe, accept_booking_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: "Accept this booking?"}, class: "text-decoration-none" %>
-            <a href="#">Reject <i class="far fa-trash-alt"></i></a>
+            <%= link_to 'Reject <i class="far fa-trash-alt"></i>'.html_safe, reject_booking_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: "Reject this booking?"}, class: "text-decoration-none" %>
           </div>
         </div>
       <% end %>
