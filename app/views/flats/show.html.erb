@@ -60,15 +60,8 @@
   <h1 class="mt-4 mb-3">BOOK THIS FLAT:</h1>
   <div class="row booking-calendar" data-controller="calendar" >
     <div class="col-5 pt-2 me-3">
-      <div class="this-month">
-        <%= month_calendar(events: @bookings, attribute: :start_date, end_attribute: :end_date) do |date, bookings| %>
-          <div class="<%= date %>">
-            <%= date.day %>
-            <% bookings.each do |booking| %>
-                <p class="booked">N/A</p>
-            <% end %>
-          </div>
-        <% end %>
+      <div id="events_calendar">
+        <%= render "calendar", locals: {events: @bookings} %>
       </div>
     </div>
     <div class="col-4 pt-2 bg-danger bg-opacity-25">

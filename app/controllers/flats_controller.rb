@@ -47,8 +47,6 @@ class FlatsController < ApplicationController
     this_month = params.fetch(:start_date, Date.today).to_date
     next_month = params.fetch(:start_date, Date.today + 1.month).to_date
     @bookings = Booking.where(flat_id: @flat).where(payment_received: true).where(accepted: true)
-    # @bookings_this_month = Booking.where(start_date: this_month.beginning_of_month.beginning_of_week..this_month.end_of_month.end_of_week).where(flat_id: @flat).where(payment_received: true).where(accepted: true)
-    # @bookings_next_month = Booking.where(start_date: next_month.beginning_of_month.beginning_of_week..next_month.end_of_month.end_of_week).where(flat_id: @flat).where(payment_received: true).where(accepted: true)
   end
 
   # a host can create a flat
