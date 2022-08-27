@@ -1,12 +1,15 @@
 <div class="container mt-3">
   <div class="navbar">
-    <h1>Welcome <%= current_user.first_name %>!</h1>
+    <h1>Host Dashboard</h1>
+  </div>
+  <div class="navbar">
+    <h2>Welcome <%= current_user.first_name %>!</h2>
     <%= link_to "Switch to Renter Dashboard", bookings_path(current_user), class: "btn btn-outline-secondary" %>
   </div>
 
   <div class="border mb-3 p-3 bg-light">
     <div class="mb-3 navbar">
-      <h2 class="m-0">Your Flats</h2>
+      <h3 class="m-0">Your Flats</h3>
       <%= link_to "Add New Flat", new_flat_path(current_user), class: "btn btn-outline-secondary" %>
     </div>
 
@@ -34,11 +37,11 @@
     </div>
 
     <div class="bg-white">
-      <% @bookings.each do |booking| %>
+      <% @bookings_new.each do |booking| %>
         <div class="notification">
-          <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+          <%= booking.user.photo.key.nil? ? (image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) : (cl_image_tag booking.user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
           <div class="notification-content">
-            <p><small><%= booking.start_date %></small></p>
+            <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
             <p><%= booking.flat.name %></p>
             <p><%= booking.user.first_name %> <%= booking.user.last_name %></p>
             <p>Placeholder for renter's rating</p>
@@ -60,15 +63,15 @@
 
   <div class="border mb-3 p-3 bg-light">
     <div class="mb-3 navbar">
-      <h2 class="m-0">Past Bookings</h2>
+      <h3 class="m-0">Past Bookings</h3>
     </div>
 
     <div class="bg-white">
-      <% @bookings.each do |booking| %>
+      <% @bookings_old.each do |booking| %>
         <div class="notification">
-          <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+          <%= booking.user.photo.key.nil? ? (image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) : (cl_image_tag booking.user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
           <div class="notification-content">
-            <p><small><%= booking.end_date %></small></p>
+            <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
             <p><%= booking.flat.name %></p>
           </div>
 

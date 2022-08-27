@@ -25,6 +25,10 @@ class FlatsController < ApplicationController
       @bookings << flat.bookings.load_target
     end
     @bookings.flatten!
+
+    @bookings_new = @bookings.select { |booking| booking.end_date >= Date.today }
+    @bookings_old = @bookings.select { |booking| booking.end_date < Date.today }
+
   end
 
   # a user can view a flat
