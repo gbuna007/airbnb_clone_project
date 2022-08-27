@@ -53,7 +53,8 @@
             <p><%= booking.payment_received ? "Paid" : "Payment Pending" %></p>
           </div>
           <div class="notification-actions">
-            <a href="#">Approve <i class="fas fa-pencil-alt"></i></a>
+            <%= link_to 'Accept <i class="fas fa-pencil-alt"></i>'.html_safe, accept_booking_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: "Accept this booking?"}, class: "text-decoration-none" %>
+            <a href="#">Accept <i class="fas fa-pencil-alt"></i></a>
             <a href="#">Reject <i class="far fa-trash-alt"></i></a>
           </div>
         </div>

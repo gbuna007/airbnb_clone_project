@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     member do
       get :payment # a renter can create a booking (booking confirmation page)
       patch :payment_update # a renter can pay for a booking (payment page)
+      patch :accept_booking
     end
   end
 end
