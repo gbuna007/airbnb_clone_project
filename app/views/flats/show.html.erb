@@ -61,8 +61,7 @@
   <div class="row booking-calendar" data-controller="calendar" >
     <div class="col-5 pt-2 me-3">
       <div class="this-month">
-        <%= month_calendar(events: @bookings_this_month, attribute: :start_date, end_attribute: :end_date) do |date, bookings| %>
-          <%# <%= tag.day (data:{ action: "click->calendar#select_date" }) %>
+        <%= month_calendar(events: @bookings, attribute: :start_date, end_attribute: :end_date) do |date, bookings| %>
           <div class="<%= date %>">
             <%= date.day %>
             <% bookings.each do |booking| %>
