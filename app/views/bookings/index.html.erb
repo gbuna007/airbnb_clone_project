@@ -23,8 +23,8 @@
           </div>
 
           <div class="notification-actions">
-            <a href="#">Edit <i class="fas fa-pencil-alt"></i></a>
-            <a href="#">Delete <i class="far fa-trash-alt"></i></a>
+             <%= link_to 'Edit <i class="fas fa-pencil-alt"></i>'.html_safe, edit_booking_path(booking), class: "text-decoration-none"  %>
+            <%= link_to 'Delete <i class="far fa-trash-alt"></i>'.html_safe, booking, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger hoverable", class: "text-decoration-none"  %>
           </div>
         </div>
       <% end %>
