@@ -1,12 +1,15 @@
 <div class="container mt-3">
   <div class="navbar">
-    <h1>Welcome <%= current_user.first_name %>!</h1>
+    <h1>Guest Dashboard</h1>
+  </div>
+  <div class="navbar">
+    <h2>Welcome <%= current_user.first_name %>!</h2>
     <%= link_to "Switch to Host Dashboard", flats_path(current_user), class: "btn btn-outline-secondary" %>
   </div>
 
   <div class="border mb-3 p-3 bg-light">
     <div class="mb-3 navbar">
-      <h2 class="m-0">Upcoming Bookings</h2>
+      <h3 class="m-0">Upcoming Bookings</h3>
       <%= link_to "Discover Flats", root_path, class: "btn btn-outline-secondary" %>
     </div>
 
@@ -30,7 +33,7 @@
 
   <div class="border mb-3 p-3 bg-light">
     <div class="mb-3 navbar">
-      <h2 class="m-0">Past Bookings</h2>
+      <h3 class="m-0">Past Bookings</h3>
     </div>
 
     <div class="bg-white">

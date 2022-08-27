@@ -4,7 +4,7 @@
   </div>
   <div class="navbar">
     <h2>Welcome <%= current_user.first_name %>!</h2>
-    <%= link_to "Switch to Renter Dashboard", bookings_path(current_user), class: "btn btn-outline-secondary" %>
+    <%= link_to "Switch to Guest Dashboard", bookings_path(current_user), class: "btn btn-outline-secondary" %>
   </div>
 
   <div class="border mb-3 p-3 bg-light">
