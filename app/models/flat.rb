@@ -8,5 +8,6 @@ class Flat < ApplicationRecord
   has_many :flat_amenities
   has_many :amenities, through: :flat_amenities
   has_many_attached :photos
+  accepts_nested_attributes_for :amenities
   validates :name, :location, :price, :num_occupants, presence: true
 end

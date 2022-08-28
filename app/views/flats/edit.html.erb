@@ -16,6 +16,9 @@
         </div>
         <div class="col-xl-4 m-1 border border-light border-4 rounded-3 p-2">
           <%= f.association :amenities, as: :check_boxes %>
+          <%= f.simple_fields_for :amenities do |c| %>
+            <%= c.input :name, label: "Add amendity", required: false  %>
+          <% end %>
         </div>
       </div>
     </div>
