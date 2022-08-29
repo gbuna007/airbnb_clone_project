@@ -19,7 +19,7 @@
           <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
           <div class="notification-content">
             <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
-            <p><%= booking.flat.name %></p>
+            <%= link_to booking.flat.name, booking, class: "text-dark" %>
           </div>
           <div class="booking-status">
             <% if booking.accepted.nil? %>
@@ -52,7 +52,7 @@
           <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
           <div class="notification-content">
             <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
-            <p><%= booking.flat.name %></p>
+            <%= link_to booking.flat.name, booking, class: "text-dark" %>
           </div>
 
           <div class="notification-actions">

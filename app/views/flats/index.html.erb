@@ -19,7 +19,7 @@
           <%= cl_image_tag( "goldgate.jpg", class:"avatar-large") %>
           <%# <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> %>
           <div class="notification-content">
-            <p><%= flat.name %></p>
+            <%= link_to flat.name, flat, class: "text-dark" %>
           </div>
 
           <div class="notification-actions">
@@ -44,7 +44,6 @@
             <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
             <p><%= booking.flat.name %></p>
             <p><%= booking.user.first_name %> <%= booking.user.last_name %></p>
-            <p>Placeholder for guest's rating</p>
           </div>
           <div class="acceptance-status me-3">
             <p>
