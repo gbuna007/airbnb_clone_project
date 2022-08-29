@@ -62,6 +62,7 @@ class FlatsController < ApplicationController
   def create
     @flat = Flat.new(flat_params)
     @flat.user = current_user
+    @amenity = Amenity.new
     authorize @flat
     if @flat.save
       redirect_to flat_path(@flat)
@@ -75,6 +76,7 @@ class FlatsController < ApplicationController
   def edit
     @user = current_user
     @flat.user = current_user
+    @amenity = Amenity.new
 
     authorize @flat
   end
