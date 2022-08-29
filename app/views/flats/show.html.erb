@@ -1,52 +1,51 @@
 <div class ="container my-3">
+  <!-- Show edit/delete buttons if you're the host of the listing -->
+  <div>
+    <% if policy(@flat).edit? %>
+      <%= link_to "Edit Listing", edit_flat_path(@flat), class: "btn btn-outline-white text-danger" %>
+      <%= link_to "Delete Listing", flat_path(@flat), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-white text-danger" %>
+    <% end %>
+  </div>
 
-  <div class="navbar">
-    <h1>IMAGES</h1>
-    <div>
-     <% if policy(@flat).edit? %>
-        <%= link_to "Edit Listing", edit_flat_path(@flat), class: "btn btn-outline-white text-danger" %>
-        <%= link_to "Delete Listing", flat_path(@flat), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-white text-danger" %>
-      <% end %>
-  </div>
-  </div>
-  <div class="container row m-2">
+  <!-- PHOTOS -->
+  <div class="container row mt-4">
     <div class="flex-grow-1 col-12 col-md-7">
       <% if @flat.photos.first.nil? %>
-        <%= cl_image_tag( "goldgate.jpg", class:"round-img") %>
+        <%= cl_image_tag( "goldgate.jpg", class:"round-img w-50 h-100") %>
       <% else %>
         <%= cl_image_tag(@flat.photos.first.key, class:"round-img img-fluid") %>
       <% end %>
     </div>
-    <div class="col-md-5">
-      <div class="row">
-        <% @flat.photos.each do |photo| %>
+
+    <div class="col-md-5 m-0">
+      <% @flat.photos.each do |photo| %>
         <div class="card col-6 mb-1" >
           <%= cl_image_tag photo.key, class: "round-img flat-img p-0 m-0" %>
         </div>
-        <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
-  <h1 class="mt-4">DETAILS</h1>
-  <div class="container border rounded-3 shadow-sm py-4 px-5 bg-light">
+
+  <!-- DETAILS SECTION -->
+  <div class="flat-details container border rounded-3 shadow-sm mt-5 py-4 px-5 bg-light">
     <h1 class="d-flex justify-content-center"><%= @flat.name %></h1>
 
-    <div class="container border rounded-3 py-4 px-5 d-flex justify-content-center">
-      <p class="w-50 border-end m-0 pe-3"><%= @flat.description %></p>
+    <div class="container border rounded-3 py-4 d-flex justify-content-around">
+      <p class="flat-description m-0"><%= @flat.description %></p>
 
-      <div class="border-end m-0 px-3">
+      <div class="m-0">
         <h2>Info</h2>
-        <ul>
-          <li>Location: <%= @flat.location %></li>
-          <li>Price: $<%= @flat.price %></li>
-          <li>Number of Occupants: <%= @flat.num_occupants %></li>
-          <li>Number of Bedrooms: <%= @flat.num_bedroom %></li>
-          <li>Number of Bathrooms: <%= @flat.num_bathroom %></li>
-          <li>Owner: <%= "#{@flat.user.first_name}  #{@flat.user.last_name}" %></li>
+        <ul class="flat-info">
+          <li><i class="fa-solid fa-location-dot"></i> <%= @flat.location %></li>
+          <li><i class="fa-solid fa-dollar-sign"></i> <%= @flat.price %> SGD per night</li>
+          <li><i class="fa-solid fa-person"></i> <%= @flat.num_occupants %> max occupants</li>
+          <li><i class="fa-solid fa-bed"></i> <%= @flat.num_bedroom %> bedrooms</li>
+          <li><i class="fa-solid fa-sink"></i> <%= @flat.num_bathroom %> bathrooms</li>
+          <li><i class="fa-solid fa-hotel"></i> Host: <%= "#{@flat.user.first_name}  #{@flat.user.last_name}" %></li>
         </ul>
       </div>
 
-      <div class="m-0 ps-3">
+      <div class="m-0">
         <h2>Amenities</h2>
         <ul>
           <% @flat.amenities.each do |amenity| %>
@@ -57,27 +56,31 @@
     </div>
   </div>
 
-  <h1 class="mt-4 mb-3">BOOK THIS FLAT:</h1>
-  <div class="row booking-calendar" data-controller="calendar" >
-    <div class="col-5 pt-2 me-3">
-      <div id="events_calendar">
-        <%= render "calendar", locals: {events: @bookings} %>
-      </div>
-    </div>
-    <div class="col-4 pt-2 bg-danger bg-opacity-25">
-      <% if user_signed_in? %>
-        <%= render "form_booking" %>
-      <% else %>
-        <div class="message">
-          <p>Please login in to book this Flat</p>
-          <%= link_to "Login", new_user_session_path, class: "btn btn-secondary-outline" %>
+  <!-- BOOKING SECTION -->
+  <div class="booking-calendar container border rounded-3 shadow-sm mt-5 py-4 px-5 bg-light" data-controller="calendar" >
+    <h1 class="text-center mb-3">Book This Flat</h1>
+    <div class="row justify-content-around border py-4 bg-white">
+      <div class="col-5 pt-2 me-3">
+        <div id="events_calendar">
+          <%= render "calendar", locals: {events: @bookings} %>
         </div>
-      <% end %>
+      </div>
+
+      <div class="col-4 pt-2 bg-danger bg-opacity-25">
+        <% if user_signed_in? %>
+          <%= render "form_booking" %>
+        <% else %>
+          <div class="message">
+            <p>Please login in to book this flat</p>
+            <%= link_to "Login", new_user_session_path, class: "btn btn-secondary-outline" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 
-  <h1>MAP</h1>
-  <div style="width: 100%; height: 400px;"
+  <!-- MAP -->
+  <div style="width: 100%; height: 400px;" class="mt-5"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">

@@ -80,9 +80,41 @@ flat3.save!
 flat_amenities = FlatAmenity.create(flat: flat3, amenity: kitchen)
 flat_amenities = FlatAmenity.create(flat: flat3, amenity: balcony)
 
+flat4 = Flat.new(
+  name: "HIDEOUT HORIZON - Eco Bamboo Home",
+  description: "Hideout Horizon is the largest addition to the Hideout Family. The most adventurous all-bamboo home is ready to welcome those seeking a little jungle adventure in East Karangasem. Your perfect little staycation in Bali is right here. We take relaxation seriously.",
+  location: "Selat, Bali, Indonesia",
+  price: 329,
+  num_occupants: 4,
+  num_bedroom: 2,
+  num_bathroom: 2,
+  lng: 103.8198,
+  lat: 1.286560)
+flat4.user = anushka
+flat4.save!
+
+flat_amenities = FlatAmenity.create(flat: flat3, amenity: kitchen)
+flat_amenities = FlatAmenity.create(flat: flat3, amenity: balcony)
+
+flat5 = Flat.new(
+  name: "Makalele Eclipse Family Suite",
+  description: "Floating above an ocean of green palms, Makalele Dome Villas has one of the most spectacular settings in the world. Perched atop a verdant bukit peninsula cliff overlooking a sea of azure blues with volcano views.",
+  location: "Pemenang, West Nusa Tenggara, Indonesia",
+  price: 165,
+  num_occupants: 4,
+  num_bedroom: 1,
+  num_bathroom: 2,
+  lng: 103.8198,
+  lat: 1.286560)
+flat5.user = anushka
+flat5.save!
+
+flat_amenities = FlatAmenity.create(flat: flat3, amenity: kitchen)
+flat_amenities = FlatAmenity.create(flat: flat3, amenity: balcony)
+
 house1 = Flat.new(
   name: "Countryside apartment just outside the city",
-  description: "A unique bamboo house and a work of art. Both the river valley view & interior are remarkable, providing such a marvelous feast to the eyes that guests find it extraordinary to live so in touch with nature but in complete luxury",
+  description: "Perfect for one; cosy for two. Styled on our larger Locke Studios, our 26m² no-nonsense City Studios have everything you need for a short stay in Dublin.",
   location: "Dublin",
   price: 3000,
   num_occupants: 5,
