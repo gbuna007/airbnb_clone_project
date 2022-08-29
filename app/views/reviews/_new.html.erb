@@ -1,4 +1,7 @@
-<%= simple_form_for [@booking, @review] do |f| %>
+<%= simple_form_for [booking, review], data: {
+        display_review_target: "form",
+        action: "submit->display-review#update"
+        } do |f| %>
   <%= f.input :comment, as: :text, rows: 3, class: "form-control" %>
   <%= f.input :rating, collection: 1..5 %>
   <%= f.button :submit %>
