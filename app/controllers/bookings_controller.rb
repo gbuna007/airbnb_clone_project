@@ -61,6 +61,8 @@ class BookingsController < ApplicationController
   # /bookings/:id
   def show
     authorize @booking
+    @review = Review.new
+    @review.booking = @booking
   end
 
   # a renter can edit a booking

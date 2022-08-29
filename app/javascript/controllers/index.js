@@ -10,6 +10,9 @@ application.register("calendar", CalendarController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import HostActionController from "./host_action_controller"
+application.register("host-action", HostActionController)
+
 import MapController from "./map_controller"
 application.register("map", MapController)
 

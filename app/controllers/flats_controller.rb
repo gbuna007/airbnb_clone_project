@@ -29,7 +29,6 @@ class FlatsController < ApplicationController
 
     @bookings_new = @bookings.select { |booking| booking.end_date >= Date.today }
     @bookings_old = @bookings.select { |booking| booking.end_date < Date.today }
-
   end
 
   # a user can view a flat
@@ -45,9 +44,10 @@ class FlatsController < ApplicationController
     @markers << @marker.select! { |key| key == "lat" || key == "lng" }
 
     # for calendar
-    this_month = params.fetch(:start_date, Date.today).to_date
-    next_month = params.fetch(:start_date, Date.today + 1.month).to_date
     @bookings = Booking.where(flat_id: @flat).where(payment_received: true).where(accepted: true)
+
+    #for review
+    @reviews = @flat.bookings.map { |booking| booking.review }
   end
 
   # a host can create a flat
@@ -106,7 +106,7 @@ class FlatsController < ApplicationController
   private
 
   def flat_params
-    params.require(:flat).permit( :name, :location, :price, :num_occupants, :description, :num_bedroom, :num_bathroom, :avail_dates, photos: [], amenity_ids: [])
+    params.require(:flat).permit(:name, :location, :price, :num_occupants, :description, :num_bedroom, :num_bathroom, :avail_dates, photos: [], amenity_ids: [])
   end
 
   def set_flat
