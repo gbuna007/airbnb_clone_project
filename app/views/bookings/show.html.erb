@@ -62,10 +62,14 @@
     </div>
   </div>
   <% if @booking.end_date < Date.today %>
-    <div class="row mt-4 justify-content-around">
-      <div class="col-10 border rounded-3 shadow-sm py-4 px-5 bg-light">
+    <div class="row mt-4 justify-content-around" data-controller="display-review">
+      <div class="col-10 border rounded-3 shadow-sm py-4 px-5 bg-light" data-display-review-target="review">
+      <% if @booking.review.id.nil? %>
         <h2>Review Your Stay</h2>
-        <%= render 'reviews/new'%>
+        <%= render 'reviews/new', booking: @booking, review: @review %>
+      <% else %>
+        <%= render "bookings/review", review: @review %>
+      <% end %>
       </div>
     </div>
   <% end %>

@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
   def new
     @review = Review.new
     authorize @review
+    @booking = Booking.find(params:id)
   end
 
   def create
@@ -10,10 +11,14 @@ class ReviewsController < ApplicationController
     @review.booking = @booking
     authorize @review
 
-    if @review.save
-      redirect_to @booking
-    else
-      render "bookings/show", status: :unprocessable_entity
+    respond_to do |format|
+      if @review.save
+        format.html { redirect_to @booking }
+        format.json
+      else
+        format.html { render "bookings/show", status: :unprocessable_entity }
+        format.json
+      end
     end
   end
 

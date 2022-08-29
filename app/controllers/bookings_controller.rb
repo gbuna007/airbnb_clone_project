@@ -61,7 +61,7 @@ class BookingsController < ApplicationController
   # /bookings/:id
   def show
     authorize @booking
-    @review = Review.new
+    @booking.review.nil? ? @review = Review.new : @review = @booking.review
     @review.booking = @booking
   end
 
