@@ -44,9 +44,10 @@ class FlatsController < ApplicationController
     @markers << @marker.select! { |key| key == "lat" || key == "lng" }
 
     # for calendar
-    this_month = params.fetch(:start_date, Date.today).to_date
-    next_month = params.fetch(:start_date, Date.today + 1.month).to_date
     @bookings = Booking.where(flat_id: @flat).where(payment_received: true).where(accepted: true)
+
+    #for review
+    @reviews = @flat.bookings.map { |booking| booking.review }
   end
 
   # a host can create a flat
