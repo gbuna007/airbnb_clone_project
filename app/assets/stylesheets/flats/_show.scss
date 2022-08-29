@@ -20,3 +20,12 @@
 .flat-details .flat-description {
   width: 500px;
 }
+
+.day.has-events {
+  pointer-events: none;
+  background-color: black;
+}
+
+.day {
+  cursor: pointer;
+}
