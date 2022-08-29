@@ -1,22 +1,22 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  # home/landing page (a user can view all flats) DONE
+  # home/landing page (a user can view all flats)
   root to: "flats#home"
 
-  # a USER can view a flat (show) DONE
+  # a USER can view a flat (show)
   # a host can view host dashboard (index)
   # a host can create a flat (new, create)
   # a host can edit a flat (edit, update)
-  # a host can delete a flat (delete)
-  # a host can accept/reject a booking
+  # a host can delete a flat (delete) NOT DONE
+  # a host can accept/reject a booking NOT DONE
   resources :flats do
     resources :bookings, only: [:new, :create]
-    # new: /flats/:flat_id/bookings/new
-    # create: /flats/:flat_id/bookings
+    # new: /flats/:flat_id/bookings/new URL IS JUST BOOKINGS/NEW
+    # create: /flats/:flat_id/bookings DOESN'T EXIST
   end
 
-  # a renter can view renter dashboard (index)
+  # a renter can view renter dashboard (index) URL IS SLIGHTLY WRONG
   # a renter can create a booking (new, create)
   # a renter can pay for a booking (payment, payment_update)
   # a renter can view a booking (show)

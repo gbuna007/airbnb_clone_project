@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[edit show payment payment_update update destroy accept_booking reject_booking]
 
-  # a renter can view  renter dashboard
+  # a renter can view renter dashboard
   # /bookings
   def index
     @bookings = policy_scope(Booking)
