@@ -1,0 +1,66 @@
+<%= simple_form_for(flat) do |f| %>
+  <%= f.input :name %>
+
+  <div class="row">
+    <!-- Column 1 -->
+    <div class="col-4">
+      <%= f.input :description, id: "big-formfield" %>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="col-4">
+      <%= f.input :location %>
+      <%= f.input :price %>
+      <%= f.input :num_occupants %>
+      <%= f.input :num_bedroom %>
+      <%= f.input :num_bathroom %>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="col-4">
+      <%= f.association :amenities, as: :check_boxes, wrapper_html: { data: { insert_in_list_target: "items" } } %>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add Amenity
+      </button>
+    </div>
+
+  </div>
+
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+
+  <div class="row">
+    <!-- Big image Wrapper -->
+    <div class="col-4">
+      <% if flat.photos.first.nil? %>
+        <%= cl_image_tag( "goldgate.jpg", class:"round-img p-0 img-fluid") %>
+      <% else %>
+        <%= cl_image_tag(flat.photos.first.key, class:"img-fluid") %>
+      <% end %>
+    </div>
+
+    <!-- Smaller image Wrapper -->
+    <div class="col-8">
+      <div class="row">
+        <% flat.photos.each do |photo| %>
+          <div class="card col-4" >
+            <%= cl_image_tag photo.key, class: "img-card-show" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer fixed-bottom">
+    <div class="footer-left">
+      <p class="mb-0">© 2022 Fakebnb, Inc.</p>
+    </div>
+    <div class="footer-right d-flex">
+        <%= button_tag(type: 'submit', class: "btn bg-transparent text-danger") do %>
+          <i class="fa-solid fa-check"></i> Update
+        <% end %>
+    </div>
+  </div>
+<% end %>

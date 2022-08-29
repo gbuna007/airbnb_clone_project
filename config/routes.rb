@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     # new: /flats/:flat_id/bookings/new URL IS JUST BOOKINGS/NEW
     # create: /flats/:flat_id/bookings DOESN'T EXIST
   end
+  resources :amenities, only: :create
 
   # a renter can view renter dashboard (index) URL IS SLIGHTLY WRONG
   # a renter can create a booking (new, create)

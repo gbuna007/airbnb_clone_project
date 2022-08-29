@@ -32,7 +32,7 @@
           </li>
           <li class="nav-item dropdown">
             <% if current_user.photo.key.nil? %>
-            <%= image_tag "https://res.cloudinary.com/twx-a/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1661594264/development/avatar-stock_mownbj.jpg",
+            <%= cl_image_tag "avatarstock.jpg",
               class: "avatar dropdown-toggle",
               id: "navbarDropdown",
               data: { bs_toggle: "dropdown" },

@@ -16,10 +16,14 @@
     <div class="bg-white">
       <% @flats.each do |flat| %>
         <div class="notification">
-          <%= cl_image_tag( "goldgate.jpg", class:"avatar-large") %>
+        <% if flat.photos.first.nil? %>
+          <%= link_to cl_image_tag( "goldgate.jpg", class:"avatar-large"), flat_path(flat) %>
+        <% else %>
+          <%= link_to cl_image_tag(flat.photos.first.key, class:"avatar-large"), flat_path(flat) %>
+        <% end %>
           <%# <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> %>
           <div class="notification-content">
-            <p><%= flat.name %></p>
+            <p><%= link_to flat.name, flat_path(flat), class: "btn bg-transparent" %></p>
           </div>
 
           <div class="notification-actions">
@@ -39,11 +43,15 @@
     <div class="bg-white">
       <% @bookings_new.each do |booking| %>
         <div class="notification">
-          <%= booking.user.photo.key.nil? ? (image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) : (cl_image_tag booking.user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+          <% if booking.user.photo.key.nil? %>
+            <%= (cl_image_tag "avatarstock.jpg", class: "avatar-large") %>
+          <% else %>
+            <%= (cl_image_tag booking.user.photo.key, class: "avatar-large") %>
+          <% end %>
           <div class="notification-content">
             <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
-            <p><%= booking.flat.name %></p>
-            <p><%= booking.user.first_name %> <%= booking.user.last_name %></p>
+            <p><%= link_to booking.flat.name, flat_path(booking.flat.id), class: "text-decoration-none text-dark" %></p>
+            <p class ="noti-text text-muted">Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
             <p>Placeholder for guest's rating</p>
           </div>
           <div class="acceptance-status me-3">
@@ -79,10 +87,15 @@
     <div class="bg-white">
       <% @bookings_old.each do |booking| %>
         <div class="notification">
-          <%= booking.user.photo.key.nil? ? (image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) : (cl_image_tag booking.user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+          <% if booking.user.photo.key.nil? %>
+            <%= (cl_image_tag "avatarstock.jpg", class: "avatar-large") %>
+          <% else %>
+            <%= (cl_image_tag booking.user.photo.key, class: "avatar-large") %>
+          <% end %>
           <div class="notification-content">
             <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
-            <p><%= booking.flat.name %></p>
+            <p><%= link_to booking.flat.name, flat_path(booking.flat.id), class: "text-decoration-none text-dark" %></p>
+            <p class ="noti-text text-muted">Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
           </div>
 
           <div class="notification-actions">
