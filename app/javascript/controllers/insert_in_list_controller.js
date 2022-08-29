@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ['items', 'form']
 
   connect() {
-    console.log(this.itemsTarget, this.formTarget);
+    console.log(this.element, this.itemsTarget, this.formTarget);
   }
 
   createAmenity(e) {
@@ -22,6 +22,7 @@ export default class extends Controller {
           this.itemsTarget.insertAdjacentHTML("beforeend", data.inserted_item)
         }
         this.formTarget.outerHTML = data.form
+        // console.log(data)
       })
   }
 }

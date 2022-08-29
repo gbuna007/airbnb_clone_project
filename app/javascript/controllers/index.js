@@ -10,13 +10,11 @@ application.register("calendar", CalendarController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-<<<<<<< HEAD
 import InsertInListController from "./insert_in_list_controller"
 application.register("insert-in-list", InsertInListController)
-=======
+
 import HostActionController from "./host_action_controller"
 application.register("host-action", HostActionController)
->>>>>>> master
 
 import MapController from "./map_controller"
 application.register("map", MapController)

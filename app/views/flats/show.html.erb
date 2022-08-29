@@ -9,23 +9,28 @@
 
   <!-- PHOTOS -->
   <div class="container row mt-4">
-    <div class="flex-grow-1 col-12 col-md-7">
+  <div class="row p-0 m-0">
+    <!-- Big image Wrapper -->
+    <div class="col-5">
       <% if @flat.photos.first.nil? %>
-        <%= cl_image_tag( "goldgate.jpg", class:"round-img w-50 h-100") %>
+        <%= cl_image_tag( "goldgate.jpg", class:"round-img p-0 img-fluid") %>
       <% else %>
         <%= cl_image_tag(@flat.photos.first.key, class:"round-img img-fluid") %>
       <% end %>
     </div>
 
-    <div class="col-md-5 m-0">
-      <% @flat.photos.each do |photo| %>
-        <div class="card col-6 mb-1" >
-          <%= cl_image_tag photo.key, class: "round-img flat-img p-0 m-0" %>
-        </div>
-      <% end %>
+    <!-- Smaller image Wrapper -->
+    <div class="col-7">
+      <div class="row">
+        <% @flat.photos.each do |photo| %>
+          <div class="card col-auto" >
+            <%= cl_image_tag photo.key, class: "round-img cards-img-size p-0 mb-2 mx-0" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
 
+  </div>
   <!-- DETAILS SECTION -->
   <div class="flat-details container border rounded-3 shadow-sm mt-5 py-4 px-5 bg-light">
     <h1 class="d-flex justify-content-center"><%= @flat.name %></h1>
@@ -47,9 +52,8 @@
 
       <div class="m-0">
         <h2>Amenities</h2>
-        <ul>
           <% @flat.amenities.each do |amenity| %>
-            <li><%= amenity.name %></li>
+            <p><i class="fa-solid fa-star"></i> <%= amenity.name %></p>
           <% end %>
         </ul>
       </div>

@@ -1,6 +1,6 @@
 <%= simple_form_for(amenity, data: {
                               insert_in_list_target: 'form',
-                              action: 'click->insert-in-list#createAmenity'
+                              action: 'submit->insert-in-list#createAmenity'
                               }) do |f| %>
   <%= f.input :name %>
   <%= f.submit %>
