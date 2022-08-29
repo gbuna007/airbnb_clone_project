@@ -83,11 +83,17 @@
           <div class="notification-content">
             <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
             <p><%= booking.flat.name %></p>
+            <p>Guest Name: <em><%= booking.user.first_name %> <%= booking.user.last_name %></em></p>
+            <% if booking.review.nil? == false  %>
+              <p class="fw-light">Comment: <em><%= booking.review.comment %></em></p>
+            <% end %>
           </div>
 
-          <div class="notification-actions">
-            <a href="#">See Reviews <i class="fa-solid fa-star"></i></a>
-          </div>
+          <% if booking.review.nil? == false  %>
+            <div class="notification-actions">
+              <p>Rating: <%= booking.review.rating %>  <i class="fa-solid fa-star"></i></p>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>

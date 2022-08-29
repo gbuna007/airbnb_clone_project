@@ -29,7 +29,6 @@ class FlatsController < ApplicationController
 
     @bookings_new = @bookings.select { |booking| booking.end_date >= Date.today }
     @bookings_old = @bookings.select { |booking| booking.end_date < Date.today }
-
   end
 
   # a user can view a flat
