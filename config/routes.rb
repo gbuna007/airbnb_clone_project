@@ -30,5 +30,6 @@ Rails.application.routes.draw do
       patch :accept_booking # host can accept booking
       patch :reject_booking # host can reject booking
     end
+    resources :reviews, only: [:new, :create]
   end
 end

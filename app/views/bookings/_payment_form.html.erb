@@ -7,24 +7,24 @@
   </select>
   <div class="mb-3">
     <label class="form-label">Cardholder Name</label>
-    <input class="form-control">
+    <input class="form-control" value="Laura Williams">
   </div>
   <div class="mb-3">
     <label class="form-label">Card Number</label>
-    <input class="form-control">
+    <input class="form-control" value="4110 9932 **** ****">
   </div>
   <div class="mb-3">
     <label class="form-label">Expiration Date</label>
-    <input class="form-control">
+    <input class="form-control" value="03/29">
   </div>
   <div class="mb-3">
     <label class="form-label">CVV</label>
-    <input class="form-control">
+    <input class="form-control" value="345">
   </div>
   <div class="mb-3">
     <label class="form-label">Postal Code</label>
-    <input class="form-control">
+    <input class="form-control" value="12345">
   </div>
 </form>
 
-<%= button_to 'Pay', payment_update_booking_path(@booking), :method => :patch %>
+<%= button_to 'Pay', payment_update_booking_path(@booking),  :method => :patch,  form: {data: {turbo_confirm: 'Confirm Payment?'}} %>

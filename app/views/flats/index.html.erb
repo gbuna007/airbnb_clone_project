@@ -21,7 +21,6 @@
         <% else %>
           <%= link_to cl_image_tag(flat.photos.first.key, class:"avatar-large"), flat_path(flat) %>
         <% end %>
-          <%# <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> %>
           <div class="notification-content">
             <p><%= link_to flat.name, flat_path(flat), class: "btn bg-transparent" %></p>
           </div>
@@ -40,7 +39,7 @@
       <h2 class="m-0">Upcoming Bookings</h2>
     </div>
 
-    <div class="bg-white">
+    <div class="bg-white" data-controller="host-action">
       <% @bookings_new.each do |booking| %>
         <div class="notification">
           <% if booking.user.photo.key.nil? %>
@@ -52,10 +51,9 @@
             <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
             <p><%= link_to booking.flat.name, flat_path(booking.flat.id), class: "text-decoration-none text-dark" %></p>
             <p class ="noti-text text-muted">Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
-            <p>Placeholder for guest's rating</p>
           </div>
           <div class="acceptance-status me-3">
-            <p>
+            <p data-host-action-target="status">
               <% if booking.accepted.nil? %>
                 <%= "Pending Host's Acceptance" %>
               <% else %>
@@ -71,8 +69,8 @@
             <p><%= booking.payment_received ? "Paid" : "Payment Pending" %></p>
           </div>
           <div class="notification-actions">
-            <%= link_to 'Accept <i class="fas fa-pencil-alt"></i>'.html_safe, accept_booking_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: "Accept this booking?"}, class: "text-decoration-none" %>
-            <%= link_to 'Reject <i class="far fa-trash-alt"></i>'.html_safe, reject_booking_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: "Reject this booking?"}, class: "text-decoration-none" %>
+            <%= link_to 'Accept <i class="fas fa-pencil-alt"></i>'.html_safe, accept_booking_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: "Accept this booking?", action: "click->host-action#accept"}, class: "text-decoration-none" %>
+            <%= link_to 'Reject <i class="far fa-trash-alt"></i>'.html_safe, reject_booking_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: "Reject this booking?", action: "click->host-action#reject"}, class: "text-decoration-none" %>
           </div>
         </div>
       <% end %>
@@ -95,12 +93,17 @@
           <div class="notification-content">
             <p><small><%= booking.start_date %> to <%= booking.end_date %></small></p>
             <p><%= link_to booking.flat.name, flat_path(booking.flat.id), class: "text-decoration-none text-dark" %></p>
-            <p class ="noti-text text-muted">Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+            <p>Guest Name: <em><%= booking.user.first_name %> <%= booking.user.last_name %></em></p>
+            <% if booking.review.nil? == false  %>
+              <p class="fw-light">Comment: <em><%= booking.review.comment %></em></p>
+            <% end %>
           </div>
 
-          <div class="notification-actions">
-            <a href="#">See Reviews <i class="fa-solid fa-star"></i></a>
-          </div>
+          <% if booking.review.nil? == false  %>
+            <div class="notification-actions">
+              <p>Rating: <%= booking.review.rating %>  <i class="fa-solid fa-star"></i></p>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>

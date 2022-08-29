@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="row mt-3 justify-content-around">
     <div class="col-5 border rounded-3 shadow-sm py-4 px-5 bg-light">
-      <h2>Booking Details</h2>
+      <h2>Booking #<%= @booking.id %> <%= @booking.accepted && @booking.payment_received ? "Confirmed" : "Not Confirmed" %></h2>
       <p><i class="fa-solid fa-location-dot"></i> <%= @booking.flat.location %></p>
       <p><i class="fa-solid fa-person"></i> Number of Guests: <%= @booking.num_guests %></p>
       <p><i class="fa-solid fa-calendar-days"></i> Start Date: <%= @booking.start_date %></p>
@@ -53,7 +53,7 @@
 
       <br>
 
-      <p>$<%= @booking.flat.price %> x <%= @booking.start_date - @booking.end_date %> nights = $<%= @booking.flat.price * (@booking.end_date - @booking.start_date) %></p>
+      <p>$<%= @booking.flat.price %> x <%= (@booking.end_date - @booking.start_date).to_i %> nights = $<%= @booking.flat.price * (@booking.end_date - @booking.start_date).to_i %></p>
       <p>Service Fee: $0</p>
       <p>Total: $<%= @booking.flat.price * (@booking.end_date - @booking.start_date) %></p>
 
@@ -61,4 +61,12 @@
       <%= link_to "Pay Now", payment_booking_path(@booking), class: "btn btn-outline-success" %>
     </div>
   </div>
+  <% if @booking.end_date < Date.today %>
+    <div class="row mt-4 justify-content-around">
+      <div class="col-10 border rounded-3 shadow-sm py-4 px-5 bg-light">
+        <h2>Review Your Stay</h2>
+        <%= render 'reviews/new'%>
+      </div>
+    </div>
+  <% end %>
 </div>
