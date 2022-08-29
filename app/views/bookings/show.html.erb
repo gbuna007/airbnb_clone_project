@@ -61,4 +61,14 @@
       <%= link_to "Pay Now", payment_booking_path(@booking), class: "btn btn-outline-success" %>
     </div>
   </div>
+  <div class="row mt-4 justify-content-around">
+    <div class="col-5 border rounded-3 shadow-sm py-4 px-5 bg-light">
+      <h2>Review Your Stay</h2>
+      <%= simple_form_for [@booking, @review] do |f| %>
+        <%= f.input :comment, as: :text, rows: 3, class: "form-control" %>
+        <%= f.input :rating, collection: 1..5 %>
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+  </div>
 </div>
