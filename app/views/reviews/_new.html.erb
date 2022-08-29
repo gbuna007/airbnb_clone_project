@@ -1,0 +1,5 @@
+<%= simple_form_for [@booking, @review] do |f| %>
+  <%= f.input :comment, as: :text, rows: 3, class: "form-control" %>
+  <%= f.input :rating, collection: 1..5 %>
+  <%= f.button :submit %>
+<% end %>
