@@ -1,18 +1,12 @@
 // Specific CSS for your home-page
+
 .container{
   background-color: white;
 }
 
 .card{
   border: none;
-}
-
-.text-small{
-  font-size: 12px;
-}
-
-.card-title{
-  font-size: 14px;
+  width: 275px;
 }
 
 .round-img{
@@ -20,7 +14,17 @@
 }
 
 .flat-img {
-  height: 200px;
+  height: 250px;
   width: 100%;
   object-fit: cover;
+}
+
+.card-title{
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.text-small{
+  font-size: 14px;
+  color: grey;
 }

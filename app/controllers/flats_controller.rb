@@ -7,6 +7,7 @@ class FlatsController < ApplicationController
   def home
     @flats = policy_scope(Flat)
 
+    # search bar
     if params[:query].present?
       sql_query = "name ILIKE :query OR location ILIKE :query"
       @flats = Flat.where(sql_query, query: "%#{params[:query]}%")
@@ -92,7 +93,7 @@ class FlatsController < ApplicationController
     end
   end
 
-  # a host can delete a flat (delete)
+  # a host can delete a flat (delete) DOESN'T WORK
   # /flats
   def destroy
     authorize @flat
@@ -100,7 +101,7 @@ class FlatsController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
-  # a host can update/reject a booking
+  # a host can update/reject a booking NOT DONE
 
   private
 

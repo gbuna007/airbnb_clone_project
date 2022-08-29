@@ -1,23 +1,27 @@
+<!-- navbar is in application.html -->
+
 <div class="container">
-  <div class="row row-cols-sm-12 row-cols-md-3 row-cols-xl-5 justify-content-center p-0">
+  <div class="justify-content-center row row-cols-sm-12 row-cols-md-3 row-cols-lg-5 p-0">
+
     <% @flats.each do |flat| %>
       <div class ="card p-0 m-2">
         <div class="img-container">
           <% if flat.photos.first.nil? %>
-            <%= link_to cl_image_tag( "goldgate.jpg", class:"round-img flat-img p-0 m-0"), flat_path(flat) %>
+            <%= link_to cl_image_tag("goldgate.jpg", class:"round-img flat-img p-0 m-0"), flat_path(flat) %>
           <% else %>
             <%= render "carousel" %>
           <% end %>
         </div>
-        <div class="card-body">
-          <p class="card-title">><strong><%= link_to flat.name.truncate(25), flat_path(flat) %></strong></p>
+
+        <div class="card-body px-0">
+          <p class="card-title"><strong><%= flat.name %></strong></p>
           <div class="p-0 m-0 text-small">
-            <p class="mb-1">Location: <%= flat.location.truncate(20) %></p>
-            <p class="mb-1">Price: $<%= flat.price %></p>
-            <p class="mb-1">Number of Occupants: <%= flat.num_occupants %></p>
+            <p class="mb-1"><%= flat.location %></p>
+            <p class="mb-1">$<%= flat.price %> per night</p>
           </div>
         </div>
       </div>
     <% end %>
+
   </div>
 </div>
